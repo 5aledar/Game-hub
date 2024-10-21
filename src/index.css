@@ -3,3 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+.color-mode {
+  background-color: #1A202C;
+  color: white;
+}

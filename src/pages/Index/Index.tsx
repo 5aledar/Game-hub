@@ -1,9 +1,8 @@
-import React from 'react'
 import { Outlet } from 'react-router-dom'
-
+import './Index.css'
 const Index = () => {
   return (
-    <div>
+    <div className='color-mode'>
         <Outlet />
     </div>
   )

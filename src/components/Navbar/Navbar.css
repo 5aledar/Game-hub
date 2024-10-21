@@ -9,10 +9,9 @@
     width: 100%;
     gap: 10px;
     padding-inline: 20px;
+    position: fixed;
 }
-.color-mode {
-    background-color: #1A202C;
-}
+
 
 .navbar img{
     width: 30px;
