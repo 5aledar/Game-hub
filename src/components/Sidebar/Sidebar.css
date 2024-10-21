@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;   
-    width: 170px;
+    width: 200px;
     padding-left: 35px;
     height: 100vh;
     overflow-y: scroll;
@@ -28,5 +28,43 @@
     margin-bottom: 7px;
 }
 .sidebar-game img{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 10%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+
+  .sidebar-skeleton{
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 7px;
+}
+  .sidebar-skeleton .img , .txt{
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+  .sidebar-skeleton .txt{
+    width:  60%;
+  }
+  .img{
     width: 15px;
+  }
+
+.sidebar-game:hover p{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.sidebar-game:hover img{
+    
 }
