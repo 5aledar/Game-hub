@@ -32,6 +32,7 @@
     height: 20px;
     object-fit: cover;
     border-radius: 10%;
+    transition: 0.5s;
 }
 
 @keyframes skeleton-loading {
@@ -66,5 +67,6 @@
     cursor: pointer;
 }
 .sidebar-game:hover img{
+    transform: scale(1.1);
     
 }
