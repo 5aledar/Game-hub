@@ -10,6 +10,7 @@
     gap: 10px;
     padding-inline: 20px;
     position: fixed;
+    z-index: 10;
 }
 
 

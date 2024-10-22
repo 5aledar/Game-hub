@@ -1,50 +1,32 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import axiosInstance from '../../utils/axiosInstance'
+import { useState } from 'react'
+
+import { NavLink } from 'react-router-dom'
 import './Sidebar.css'
+
 interface Genre {
     id: number;
     name: string;
     image_background: string;
 }
-const Sidebar = () => {
-    const [genres, setGenres] = useState<Genre[]>([])
-    const [loading, setLoading] = useState(false)
-    const getGenres = async () => {
-        try {
-            setLoading(true)
-            const response = await axiosInstance.get('/genres', {
-                params: {
-                    key: process.env.VITE_API_KEY,
-                }
-            });
-            setGenres(response.data.results);
-            console.log(genres);
+interface Props {
+    categories: Genre[]
 
-            setLoading(false)
-        } catch (error) {
-            console.error('Error fetching genres:', error);
-        }
-    };
+}
+const Sidebar = ({ categories }: Props) => {
 
-    useEffect(() => {
-        getGenres();
-    }, [])
     return (
-        <div className='sidebar'>
+        <div className='sidebar color-mode'>
             <h1>Genres</h1>
             {
-                genres.map((item) => {
+                categories.map((item) => {
                     return (
-                        <div className='sidebar-game'  key={item.id} >
+                        <NavLink to={`/games/${item.id}`} className={({ isActive }) => (isActive ? 'sidebar-game color-mode active-link' : 'sidebar-game color-mode')} key={item.id} >
                             <img src={item.image_background} loading='lazy' />
                             <p>{item.name}</p>
-                        </div>
+                        </NavLink>
                     )
-
                 })
             }
-
         </div>
     )
 }
