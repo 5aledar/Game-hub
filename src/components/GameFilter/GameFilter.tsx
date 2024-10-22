@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './GameFilter.css';
 import { useParams } from 'react-router-dom';
 import GamesContainer from '../GamesContainer/GamesContainer';
-import useFetchGames from '../../hooks/useFetchGames'; 
+import useFetchGames from '../../hooks/useFetchGames';
 import axiosInstance from '../../utils/axiosInstance';
 
 interface Props {
@@ -13,7 +13,6 @@ export interface Platform {
     name: string;
     slug: string;
 }
-
 const GameFilter = ({ platforms }: Props) => {
     const [platformHeader, setPlatformHeader] = useState('PC');
     const [genre, setGenre] = useState('Action');
@@ -35,7 +34,6 @@ const GameFilter = ({ platforms }: Props) => {
                 console.error('Error fetching genre:', error);
             }
         };
-
         fetchGenre();
     }, [id]);
 
@@ -44,7 +42,7 @@ const GameFilter = ({ platforms }: Props) => {
         if (selectedPlatform) {
             setPlatformHeader(event.target.value);
             setParentPlatform(selectedPlatform.id);
-            setPage(1); 
+            setPage(1);
         }
     };
 

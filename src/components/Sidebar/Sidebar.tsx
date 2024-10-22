@@ -20,7 +20,7 @@ const Sidebar = ({ categories }: Props) => {
             {
                 categories.map((item) => {
                     return (
-                        <NavLink to={`/games/${item.id}`} className={({ isActive }) => (isActive ? 'sidebar-game color-mode active-link' : 'sidebar-game color-mode')} key={item.id} >
+                        <NavLink to={`/${item.id }`} className={({ isActive }) => (isActive ? 'sidebar-game color-mode active-link' : 'sidebar-game color-mode')} key={item.id} >
                             <img src={item.image_background} loading='lazy' />
                             <p>{item.name}</p>
                         </NavLink>

@@ -19,8 +19,9 @@ export interface Game {
     parent_platforms: ParentPlatform[];
     released: string;
     rating: number;
+    
 }
-const useFetchGames = (genreId: string, platformId: number, sortOption: string, page: number) => {
+const useFetchGames = (genreId: string , platformId: number, sortOption: string, page: number) => {
     const [games, setGames] = useState<Game[]>([]);
     const [nextPage, setNextPage] = useState<string | null>(null);
     const [prevPage, setPrevPage] = useState<string | null>(null);
@@ -28,7 +29,7 @@ const useFetchGames = (genreId: string, platformId: number, sortOption: string, 
     const fetchGames = async () => {
         try {
             const response = await axiosInstance.get(
-                `/games?genres=${genreId}&ordering=${sortOption}&page=${page}&parent_platforms=${platformId}&key=${process.env.VITE_API_KEY}`
+                `/games?genres=${genreId || 1}&ordering=${sortOption}&page=${page}&parent_platforms=${platformId}&key=${process.env.VITE_API_KEY}`
             );
             setGames(response.data.results);
             setNextPage(response.data.next);

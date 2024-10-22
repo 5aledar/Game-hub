@@ -6,7 +6,6 @@ import Home from './pages/Home/Home';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css'
 import GameDetails from './pages/GameDetails/GameDetails';
-import GamesDisply from './components/GameFilter/GameFilter';
 const queryClient = new QueryClient()
 const router = createBrowserRouter(
   [
@@ -15,17 +14,13 @@ const router = createBrowserRouter(
       element: <Index />,
       children: [
         {
-          path: '',
+          path: ':id',
           element: <Home />,
-          children: [
-           
-            {
-              path: '/games/:id',
-              element: <GameDetails />
-            }
-          ]
+        },
+        {
+          path: '/games/:id',
+          element: <GameDetails />
         }
-
       ]
     }
   ]
