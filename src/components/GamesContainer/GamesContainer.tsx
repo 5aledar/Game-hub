@@ -1,6 +1,6 @@
 import GameCard from '../GameCard/GameCard'
 import './GamesContainer.css'
-import { Game } from '../GameFilter/GameFilter'
+import {Game} from '../../hooks/useFetchGames'
 interface Prop {
     games: Game[]
 }
@@ -10,7 +10,7 @@ const GamesContainer = ({ games }: Prop) => {
             {
                 games.map((game) => {
                     return(
-                        <GameCard game={game} />
+                        <GameCard key={game.id} game={game} />
                     )
                 })
             }

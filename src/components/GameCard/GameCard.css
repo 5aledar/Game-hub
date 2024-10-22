@@ -2,6 +2,12 @@
     width: 200px;
     height: 220px;
     margin-bottom: 50px;
+    transition: 0.3s;
+}
+
+.gamecard-container:hover {
+    transform: scale(1.03);
+    cursor: pointer;
 }
 
 .gamecard {
@@ -15,9 +21,14 @@
 
 .gamecard img {
     width: 100%;
-    /* Make image responsive */
+
     height: 160px;
     object-fit: cover;
+    transition: 0.3s;
+}
+
+.gamecard:hover .poster {
+    transform: scale(1.03);
 }
 
 .gamecard-info {
@@ -35,6 +46,7 @@
     display: flex;
     width: 12px;
     height: 12px;
+    filter: brightness(0) saturate(80%) invert(60%) sepia(40%) saturate(0%) hue-rotate(100deg) brightness(90%) contrast(92%);
 }
 
 .gamecard-platform {
@@ -45,4 +57,36 @@
     justify-content: start;
     width: 60%;
     align-items: center;
+}
+
+.platform-rating {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+.platform-rating p {
+    padding: 2px 4px;
+    margin-top: 10px;
+    font-size: 8px;
+    font-weight: 700;
+    border-radius: 3px;
+}
+
+.good {
+
+    background-color: #9ce77e;
+    color: #168c4d;
+}
+
+.avg {
+    background-color: #f59a90;
+    color: #a91404;
+}
+
+.gamecard-title {
+    padding-left: 8px;
 }

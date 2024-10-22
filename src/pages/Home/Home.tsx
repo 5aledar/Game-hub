@@ -4,16 +4,13 @@ import Navbar from '../../components/Navbar/Navbar'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import axiosInstance from '../../utils/axiosInstance'
 import GameFilter from '../../components/GameFilter/GameFilter'
-
+import { Platform } from '../../components/GameFilter/GameFilter'
 interface Genre {
     name: string;
     id: number;
     image_background: string;
 }
-interface Platform {
-    name: string;
-    id: number
-}
+
 const Home = () => {
     const [genres, setGenres] = useState<Genre[]>([])
     const [platforms, setPlatforms] = useState<Platform[]>([])

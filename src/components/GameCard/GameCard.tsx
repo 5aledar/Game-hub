@@ -1,5 +1,5 @@
 import './GameCard.css';
-import { Game } from '../GameFilter/GameFilter';
+import { Game } from '../../hooks/useFetchGames';
 
 interface GameCardProps {
   game: Game; // Accept the entire game object
@@ -7,25 +7,29 @@ interface GameCardProps {
 
 const GameCard = ({ game }: GameCardProps) => {
   // Destructure the properties you need from the game object
-  const { id, name, background_image, parent_platforms } = game;
+  const { id, name, background_image, parent_platforms , rating } = game;
 
   return (
     <div className='gamecard-container'>
       <div key={id} className='gamecard'>
-        <img src={background_image || "/images/logo.png"} loading='lazy' alt={`${name} bg`} />
+        <img className='poster' src={background_image || "/images/logo.png"} loading='lazy' alt={`${name} bg`} />
         <div className='gamecard-info'>
-          <div className='gamecard-platform'>
-            {
-              parent_platforms.map((item) => {
-                return (
-                  <div className='platform-container'>
-                    <img className='platformicon' src={`/icons/${item.platform.name}.svg`} alt="" />
-                  </div>
-                )
-              })
-            }
+          <div className='platform-rating'>
+            <div className='gamecard-platform'>
+              {
+                parent_platforms?.map((item) => {
+                  return (
+                    <div key={item.platform.id} className='platform-container'>
+                      <img className='platformicon' src={`/icons/${item.platform.slug}.svg`} alt="" />
+                    </div>
+                  )
+                })
+              }
+            </div>
+            
+            <p className={`${rating > 3 ? 'good' : 'avg'}`}>{Math.trunc((rating * 2) * 10)}</p>
           </div>
-          <p>{name}</p>
+          <p className='gamecard-title'>{name}</p>
         </div>
       </div>
     </div>
