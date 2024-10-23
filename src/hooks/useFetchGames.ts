@@ -1,26 +1,11 @@
 // src/hooks/useFetchGames.ts
 import { useEffect, useState } from 'react';
 import axiosInstance from '../utils/axiosInstance'; // Adjust the path if needed
+import { Platform } from '../utils/interfaces';
+import { ParentPlatform } from '../utils/interfaces';
+import { Game } from '../utils/interfaces';
 
-export interface Platform {
-    id: number;
-    name: string;
-    slug: string;
-}
 
-interface ParentPlatform {
-    platform: Platform;
-}
-
-export interface Game {
-    id: number;
-    name: string;
-    background_image: string;
-    parent_platforms: ParentPlatform[];
-    released: string;
-    rating: number;
-    
-}
 const useFetchGames = (genreId: string , platformId: number, sortOption: string, page: number) => {
     const [games, setGames] = useState<Game[]>([]);
     const [nextPage, setNextPage] = useState<string | null>(null);

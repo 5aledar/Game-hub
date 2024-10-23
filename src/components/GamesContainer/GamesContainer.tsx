@@ -1,6 +1,6 @@
 import GameCard from '../GameCard/GameCard'
 import './GamesContainer.css'
-import {Game} from '../../hooks/useFetchGames'
+import { Game } from '../../utils/interfaces'
 interface Prop {
     games: Game[]
 }

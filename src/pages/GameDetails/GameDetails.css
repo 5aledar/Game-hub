@@ -1,0 +1,147 @@
+.gamedetails {
+  margin: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+@media (max-width: 700px) {
+  .gamedetails {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .gamedetails-media {
+    width: 100%;
+  }
+
+  .gamedetails-text{
+    width: 100%;
+    padding-bottom: 20px;
+  }
+  .gamedetails-text h1{
+    font-size: 24px;
+  }
+
+  .gamedetails-details {
+    width: 100%;
+    font-size: 12px;
+    justify-content: space-between;
+  }
+  .gamedetails-description{
+    width: 50%;
+  }
+  .gamedetails-description p{
+    font-size: 12px;
+  }
+  .title{
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  .gamedetails-media-images{
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  .gamedetails-media-images img{
+       width: 100%;
+  }
+}
+
+.gamedetails h1 {
+  margin-bottom: 10px;
+}
+
+.gamedetails-description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+@media (min-width: 720px) {
+  .gamedetails-text {
+    width: 45%;
+  }
+  
+  .gamedetails-media {
+    width: 48%;
+  }
+  .gamedetails-media-images img {
+    width: 50%;
+    object-fit: cover;
+  }
+}
+
+.gamedetails-description button {
+  transition: 0.3s;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  background-color: rgb(50, 75, 75);
+  margin-top: 20px;
+}
+
+
+
+.gamedetails-media-images {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3px;
+  width: 100%;
+}
+
+
+.gamedetails-details {
+  width: 70%;
+  padding-top: 40px;
+  display: flex;
+  padding-right: 10px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.gamedetails-details .title {
+  color: #404a61;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+.score {
+  width: 20px;
+  padding: 2px 4px;
+  margin-top: 10px;
+  font-size: 8px;
+  font-weight: 700;
+  border-radius: 3px;
+}
+
+.good {
+  background-color: #253839;
+  color: #83BFA8;
+}
+
+.avg {
+  background-color: #f59a90;
+  color: #a91404;
+}
+
+.details-publisher {}
+
+.description-content {
+  display: inline-block;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.description-content.expanded {
+  max-height: 500px;
+  opacity: 1;
+}

@@ -1,16 +1,14 @@
 import './GameCard.css';
-import { Game } from '../../hooks/useFetchGames';
+import { Game } from '../../utils/interfaces';
 import { useNavigate } from 'react-router-dom';
-interface GameCardProps {
-  game: Game; // Accept the entire game object
-}
+import { GameCardProps } from '../../utils/interfaces';
 
 const GameCard = ({ game }: GameCardProps) => {
-  // Destructure the properties you need from the game object
+
   const { id, name, background_image, parent_platforms, rating } = game;
   const navigate = useNavigate()
   return (
-    <div className='gamecard-container' onClick={() => navigate(`/games/${id}`)} >
+    <div className='gamecard-container text-dark' onClick={() => navigate(`/games/${id}`)} >
       <div key={id} className='gamecard'>
         <img className='poster' src={background_image || "/images/logo.png"} loading='lazy' alt={`${name} bg`} />
         <div className='gamecard-info'>
@@ -26,7 +24,6 @@ const GameCard = ({ game }: GameCardProps) => {
                 })
               }
             </div>
-
             <p className={`${rating > 3 ? 'good' : 'avg'}`}>{Math.trunc((rating * 2) * 10)}</p>
           </div>
           <p className='gamecard-title'>{name}</p>

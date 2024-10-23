@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
 import axiosInstance from '../utils/axiosInstance';
+import { Genre } from '../utils/interfaces';
 
-interface Genre {
-    name: string;
-    id: number;
-    image_background: string;
-}
 
 const useFetchGenres = () => {
     const [genres, setGenres] = useState<Genre[]>([]);

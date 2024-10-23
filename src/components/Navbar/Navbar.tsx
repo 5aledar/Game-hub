@@ -1,7 +1,7 @@
 import './Navbar.css'
 const Navbar = () => {
     return (
-        <div className='navbar color-mode'>
+        <div className='navbar color-mode text-dark'>
             <img className='navbar-logo' src='/images/logo.png' />
             <div className='navbar-search'>
                 <input type='text' placeholder='Search Games ..' />

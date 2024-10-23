@@ -4,15 +4,11 @@ import { useParams } from 'react-router-dom';
 import GamesContainer from '../GamesContainer/GamesContainer';
 import useFetchGames from '../../hooks/useFetchGames';
 import axiosInstance from '../../utils/axiosInstance';
-
+import { Platform } from '../../utils/interfaces';
 interface Props {
     platforms: Platform[];
 }
-export interface Platform {
-    id: number;
-    name: string;
-    slug: string;
-}
+
 const GameFilter = ({ platforms }: Props) => {
     const [platformHeader, setPlatformHeader] = useState('PC');
     const [genre, setGenre] = useState('Action');
@@ -53,7 +49,7 @@ const GameFilter = ({ platforms }: Props) => {
 
     return (
         <>
-            <div className='gamefilter color-mode'>
+            <div className='gamefilter color-mode text-dark'>
                 <h1>{platformHeader} {genre} Games</h1>
                 <div className='gamefilter-container'>
                     <select name="platform" onChange={handlePlatformOnChange}>
@@ -72,7 +68,7 @@ const GameFilter = ({ platforms }: Props) => {
             <div className='container'>
                 <GamesContainer games={games} />
             </div>
-            <div className="pagination">
+            <div className="pagination text-dark">
                 <button onClick={() => setPage(prev => Math.max(prev - 1, 1))} disabled={!prevPage}>-</button>
                 <span>Page {page}</span>
                 <button onClick={() => setPage(prev => prev + 1)} disabled={!nextPage}>+</button>

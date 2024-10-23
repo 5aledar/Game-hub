@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Platform } from './useFetchGames';
+import { Platform } from '../utils/interfaces';
 import axiosInstance from '../utils/axiosInstance';
 
 const useFetchPlatforms = () => {

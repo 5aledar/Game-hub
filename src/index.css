@@ -10,8 +10,14 @@
 }
 .color-mode {
   background-color: #1A202C;
-  color: white;
+
 }
 :root {
    background-color: #1A202C;
+}
+.text-dark{
+  color: white;
+}
+.text-light{
+  color: black;
 }
