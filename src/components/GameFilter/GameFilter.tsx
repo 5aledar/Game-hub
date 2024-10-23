@@ -61,7 +61,7 @@ const GameFilter = ({ platforms }: Props) => {
                             <option key={item.id} value={item.name}>{item.name}</option>
                         ))}
                     </select>
-                    <select value={sortOption} onChange={handleSortChange}>
+                    <select value={sortOption} className='sortingfilter' onChange={handleSortChange}>
                         <option value="relevance">Relevance</option>
                         <option value="name">Name</option>
                         <option value="-rating">Rating</option>
