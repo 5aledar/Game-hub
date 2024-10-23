@@ -18,14 +18,14 @@
     .gamefilter-container {
         flex-direction: column;
         align-items: start;
+
     }
+
    
 }
 
 
 .gamefilter-container select {
-    background-color: #2E3440;
-    color: white;
     height: 30px;
     width: 150px;
     outline: none;
@@ -33,12 +33,18 @@
     border-radius: 5px;
     padding-left: 5px;
     appearance: none;
-   
+    
+}
+.select-dark{
+    background-color: #2E3440;
+    color: white;
+}
+.select-light{
+    background-color: rgb(237, 245, 253);
+    color: black;
 }
 
-.gamefilter-container:hover select>button {
-    background-color: #2E3440;
-}
+
 
 .container {
     height: max-content;
@@ -59,12 +65,23 @@
    padding-left: 200px;
    padding-bottom: 20px;
 }
-
+.page-dark{
+    background-color: #2E3440;
+}
+.page-dark:hover{
+    background-color: #2f323a;
+}
+.page-light{
+    background-color: rgb(203, 217, 232);
+}
+.page-light:hover{
+    background-color: #7b8598;
+}
 .pagination button {
-    background-color: #3d4452;
+
    
     border: none;
-    color: white;
+ 
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -83,7 +100,7 @@
 }
 
 .pagination button:hover:not(:disabled) {
-    background-color: #313743;
+   
 }
 
 .pagination span {

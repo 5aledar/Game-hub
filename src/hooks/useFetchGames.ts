@@ -1,34 +1,30 @@
 // src/hooks/useFetchGames.ts
-import { useEffect, useState } from 'react';
-import axiosInstance from '../utils/axiosInstance'; // Adjust the path if needed
-import { Platform } from '../utils/interfaces';
-import { ParentPlatform } from '../utils/interfaces';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '../utils/axiosInstance'; 
 import { Game } from '../utils/interfaces';
 
+const fetchGames = async (genreId: string, platformId: number, sortOption: string, page: number) => {
+    const response = await axiosInstance.get(
+        `/games?genres=${genreId || 1}&ordering=${sortOption}&page=${page}&parent_platforms=${platformId}&key=${process.env.VITE_API_KEY}`
+    );
+    return response.data; 
+};
 
-const useFetchGames = (genreId: string , platformId: number, sortOption: string, page: number) => {
-    const [games, setGames] = useState<Game[]>([]);
-    const [nextPage, setNextPage] = useState<string | null>(null);
-    const [prevPage, setPrevPage] = useState<string | null>(null);
+const useFetchGames = (genreId: string, platformId: number, sortOption: string, page: number) => {
+    const { data, error, isLoading } = useQuery({
+        queryKey: ['games', genreId, platformId, sortOption, page], 
+        queryFn: () => fetchGames(genreId, platformId, sortOption, page),
+        staleTime: 1000 * 60 * 5, 
+    });
 
-    const fetchGames = async () => {
-        try {
-            const response = await axiosInstance.get(
-                `/games?genres=${genreId || 1}&ordering=${sortOption}&page=${page}&parent_platforms=${platformId}&key=${process.env.VITE_API_KEY}`
-            );
-            setGames(response.data.results);
-            setNextPage(response.data.next);
-            setPrevPage(response.data.previous);
-        } catch (error) {
-            console.error('Error fetching games:', error);
-        }
+
+    return {
+        games: data?.results || [],
+        nextPage: data?.next || null,
+        prevPage: data?.previous || null,
+        error,
+        isLoading,
     };
-
-    useEffect(() => {
-        fetchGames();
-    }, [genreId, platformId, sortOption, page]);
-
-    return { games, nextPage, prevPage };
 };
 
 export default useFetchGames;

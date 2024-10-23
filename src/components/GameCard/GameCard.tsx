@@ -2,16 +2,16 @@ import './GameCard.css';
 import { Game } from '../../utils/interfaces';
 import { useNavigate } from 'react-router-dom';
 import { GameCardProps } from '../../utils/interfaces';
-
+import { useThemeContext } from '../../context/ThemeContext';
 const GameCard = ({ game }: GameCardProps) => {
-
+  const { themeContext } = useThemeContext()
   const { id, name, background_image, parent_platforms, rating } = game;
   const navigate = useNavigate()
   return (
-    <div className='gamecard-container text-dark' onClick={() => navigate(`/games/${id}`)} >
+    <div className={`gamecard-container ${themeContext == 'dark'?'text-dark':'text-light'} `} onClick={() => navigate(`/games/${id}`)} >
       <div key={id} className='gamecard'>
         <img className='poster' src={background_image || "/images/logo.png"} loading='lazy' alt={`${name} bg`} />
-        <div className='gamecard-info'>
+        <div className={`gamecard-info  ${themeContext == 'dark'?'dark':'light'}`}>
           <div className='platform-rating'>
             <div className='gamecard-platform'>
               {

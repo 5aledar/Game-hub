@@ -4,7 +4,9 @@ import { useState, useRef, useEffect } from "react"
 import './GameDetails.css'
 import { useFetchGameDetails } from "../../hooks/useFetchGameDetails"
 import { useFetchTrailer } from "../../hooks/useFetchTrailer"
+import { useThemeContext } from "../../context/ThemeContext"
 const GameDetails = () => {
+  const { themeContext } = useThemeContext()
   const { id } = useParams<{ id: string }>()
   const [isExpanded, setIsExpanded] = useState(false);
   const [contentHeight, setContentHeight] = useState('0px');
@@ -25,7 +27,7 @@ const GameDetails = () => {
   };
 
   return (
-    <div className="gamedetails text-dark">
+    <div className={`gamedetails ${themeContext == 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'}`}>
       <div className="gamedetails-text">
         <h1>{details?.name}</h1>
         <div className="gamedetails-description">
@@ -47,7 +49,7 @@ const GameDetails = () => {
             <p className="title">Genre</p>
             <div className="data">
               {
-                details?.genres?.map((genre , index) => (
+                details?.genres?.map((genre, index) => (
                   <p key={index}>{genre.name}</p>
                 ))
               }
@@ -72,7 +74,7 @@ const GameDetails = () => {
           <div className="details-publisher">
             <p className="title">publisher</p>
             {
-              details?.publishers?.map((publisher , index) => (
+              details?.publishers?.map((publisher, index) => (
                 <p key={index}>{publisher.name}</p>
               ))
             }
@@ -80,7 +82,7 @@ const GameDetails = () => {
         </div>
       </div>
       <div className="gamedetails-media">
-        {trailers.length > 0 ? 
+        {trailers.length > 0 ?
 
           <video
             width="100%"
@@ -97,7 +99,7 @@ const GameDetails = () => {
             />
             Your browser does not support the video tag.
           </video>
-        
+
           : <img width='100%' src={details?.background_image} alt="" />
         }        <div className="gamedetails-media-images">
           <img src={details?.background_image} alt="" />

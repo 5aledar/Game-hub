@@ -3,13 +3,16 @@ import './GameFilter.css';
 import { useParams } from 'react-router-dom';
 import GamesContainer from '../GamesContainer/GamesContainer';
 import useFetchGames from '../../hooks/useFetchGames';
-import axiosInstance from '../../utils/axiosInstance';
 import { Platform } from '../../utils/interfaces';
+import { useThemeContext } from '../../context/ThemeContext';
+import axiosInstance from '../../utils/axiosInstance';
+
 interface Props {
     platforms: Platform[];
 }
 
 const GameFilter = ({ platforms }: Props) => {
+    const { themeContext } = useThemeContext();
     const [platformHeader, setPlatformHeader] = useState('PC');
     const [genre, setGenre] = useState('Action');
     const { id } = useParams<{ id: string }>();
@@ -17,8 +20,10 @@ const GameFilter = ({ platforms }: Props) => {
     const [sortOption, setSortOption] = useState<string>('relevance');
     const [parentPlatform, setParentPlatform] = useState<number>(1);
 
-    const { games, nextPage, prevPage } = useFetchGames(id!, parentPlatform, sortOption, page);
+    // Fetch games using the new hook
+    const { games, nextPage, prevPage, error, isLoading } = useFetchGames(id!, parentPlatform, sortOption, page);
 
+    // Fetch genre details based on the genre ID
     useEffect(() => {
         const fetchGenre = async () => {
             try {
@@ -47,17 +52,30 @@ const GameFilter = ({ platforms }: Props) => {
         setPage(1);
     };
 
+    // Loading and error states
+    if (isLoading) return <div>Loading games...</div>;
+    if (error) return <div>Error fetching games: {error.message}</div>;
+
     return (
         <>
-            <div className='gamefilter color-mode text-dark'>
+            <div className={`gamefilter ${themeContext === 'dark' ? 'text-dark dark-mode' : 'text-light light-mode'}`}>
                 <h1>{platformHeader} {genre} Games</h1>
                 <div className='gamefilter-container'>
-                    <select name="platform" onChange={handlePlatformOnChange}>
+                    <select 
+                        name="platform" 
+                        value={platformHeader} // Bind the value of the select to platformHeader
+                        className={`${themeContext === 'dark' ? 'select-dark text-dark' : 'select-light text-light'}`} 
+                        onChange={handlePlatformOnChange}
+                    >
                         {platforms.map(item => (
                             <option key={item.id} value={item.name}>{item.name}</option>
                         ))}
                     </select>
-                    <select value={sortOption} className='sortingfilter' onChange={handleSortChange}>
+                    <select 
+                        value={sortOption} 
+                        className={`${themeContext === 'dark' ? 'select-dark text-dark' : 'select-light text-light'} sortingfilter`} 
+                        onChange={handleSortChange}
+                    >
                         <option value="relevance">Relevance</option>
                         <option value="name">Name</option>
                         <option value="-rating">Rating</option>
@@ -68,10 +86,10 @@ const GameFilter = ({ platforms }: Props) => {
             <div className='container'>
                 <GamesContainer games={games} />
             </div>
-            <div className="pagination text-dark">
-                <button onClick={() => setPage(prev => Math.max(prev - 1, 1))} disabled={!prevPage}>-</button>
+            <div className={`pagination text-dark ${themeContext === 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'}`}>
+                <button className={`${themeContext === 'dark' ? 'page-dark text-dark' : 'page-light text-light'}`} onClick={() => setPage(prev => Math.max(prev - 1, 1))} disabled={!prevPage}>-</button>
                 <span>Page {page}</span>
-                <button onClick={() => setPage(prev => prev + 1)} disabled={!nextPage}>+</button>
+                <button className={`${themeContext === 'dark' ? 'page-dark text-dark' : 'page-light text-light'}`} onClick={() => setPage(prev => prev + 1)} disabled={!nextPage}>+</button>
             </div>
         </>
     );

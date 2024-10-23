@@ -1,6 +1,5 @@
 @media (min-width: 720px) {
     .gamecontainer {
-        
         display: flex;
         column-gap: 10px;
         flex-wrap: wrap;
@@ -16,14 +15,13 @@
         display: flex;
         flex-wrap: wrap;
         column-gap: 8px;
-        
         padding-right: 10px;
         padding-top: 40px;
     }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 530px) {
     .gamecontainer {
-        padding-top: 90px;
+        padding-top: 150px;
     }
 }

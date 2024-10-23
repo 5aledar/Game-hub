@@ -1,6 +1,7 @@
 .gamedetails {
-  margin: 40px;
+  padding: 40px;
   display: flex;
+  height: 100vh;
   justify-content: space-between;
   align-items: flex-start;
 }
@@ -80,7 +81,7 @@
   border-radius: 20px;
   outline: none;
   border: none;
-  background-color: rgb(50, 75, 75);
+
   margin-top: 20px;
 }
 

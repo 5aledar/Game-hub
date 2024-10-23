@@ -10,7 +10,6 @@ export const useFetchTrailer = (id: string) => {
                 setTrailers(response.data.results)
             } catch (error) {
                 console.error(error);
-
             }
         }
         fetchTrailers()
