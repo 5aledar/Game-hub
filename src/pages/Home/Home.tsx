@@ -6,8 +6,8 @@ import useFetchGenres from '../../hooks/useFetchGenres';
 import useFetchPlatforms from '../../hooks/useFetchPlatforms'; 
 
 const Home = () => {
-    const { genres, loading: loadingGenres, error: errorGenres } = useFetchGenres();
-    const { platforms, loading: loadingPlatforms, error: errorPlatforms } = useFetchPlatforms();
+    const { genres,  } = useFetchGenres();
+    const { platforms } = useFetchPlatforms();
 
 
     return (

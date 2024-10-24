@@ -27,6 +27,17 @@ const GameDetails = () => {
     setIsExpanded(!isExpanded);
   };
 
+  const [isLoading, setIsLoading] = useState(true); 
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
+
+
+  const handleImageError = () => {
+    setIsLoading(false);
+  };
+
   return (
     <>
       <Navbar />
@@ -45,7 +56,7 @@ const GameDetails = () => {
               <h1>{details?.name}</h1>
               <div className="gamedetails-description">
                 <p>
-                  {details?.description_raw.slice(0, maxLength)}...
+                  {details?.description_raw.slice(0, maxLength)}
                   <span
                     ref={contentRef}
                     className={`description-content ${isExpanded ? 'expanded' : ''}`}
