@@ -18,7 +18,6 @@
     .gamefilter-container {
         flex-direction: column;
         align-items: start;
-
     }
 
    
@@ -99,9 +98,7 @@
     cursor: not-allowed;
 }
 
-.pagination button:hover:not(:disabled) {
-   
-}
+
 
 .pagination span {
     font-size: 18px;

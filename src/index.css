@@ -14,17 +14,13 @@
 }
 .dark-mode{
   background-color: #1A202C;
-  transition: 0.3s;
 }
 .light-mode{
-  transition: 0.3s;
   background-color: white;
 }
 .text-dark{
   color: white;
-  transition: 0.3s;
 }
 .text-light{
   color: black;
-  transition: 0.3s;
 }

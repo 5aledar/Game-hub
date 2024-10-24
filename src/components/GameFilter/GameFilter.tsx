@@ -20,10 +20,8 @@ const GameFilter = ({ platforms }: Props) => {
     const [sortOption, setSortOption] = useState<string>('relevance');
     const [parentPlatform, setParentPlatform] = useState<number>(1);
 
-    // Fetch games using the new hook
     const { games, nextPage, prevPage, error, isLoading } = useFetchGames(id!, parentPlatform, sortOption, page);
 
-    // Fetch genre details based on the genre ID
     useEffect(() => {
         const fetchGenre = async () => {
             try {
@@ -52,8 +50,13 @@ const GameFilter = ({ platforms }: Props) => {
         setPage(1);
     };
 
-    // Loading and error states
-    if (isLoading) return <div>Loading games...</div>;
+    if (isLoading) {
+        return (
+            <div className="loading-spinner">
+                <div className="spinner"></div>
+            </div>
+        );
+    }
     if (error) return <div>Error fetching games: {error.message}</div>;
 
     return (
@@ -63,7 +66,7 @@ const GameFilter = ({ platforms }: Props) => {
                 <div className='gamefilter-container'>
                     <select 
                         name="platform" 
-                        value={platformHeader} // Bind the value of the select to platformHeader
+                        value={platformHeader}
                         className={`${themeContext === 'dark' ? 'select-dark text-dark' : 'select-light text-light'}`} 
                         onChange={handlePlatformOnChange}
                     >
