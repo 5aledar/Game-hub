@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
       'process.env.VITE_API_KEY': JSON.stringify(env.VITE_API_KEY)
     },
     plugins: [react()],
-    base: process.env.VITE_BASE_PATH || '/deploy_react_app_github_pages_vercel',
+   base: process.env.VITE_BASE_PATH || '/Game-hub/',
 
   }
 })
