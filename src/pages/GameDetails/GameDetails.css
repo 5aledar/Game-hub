@@ -1,5 +1,6 @@
 .gamedetails {
   padding: 40px;
+  padding-top: 60px;
   display: flex;
   height: 100vh;
   justify-content: space-between;
@@ -132,7 +133,9 @@
   color: #a91404;
 }
 
-.details-publisher {}
+.details-publisher {
+ 
+}
 
 .description-content {
   display: inline-block;

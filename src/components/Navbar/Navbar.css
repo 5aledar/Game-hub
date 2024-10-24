@@ -14,6 +14,7 @@
 
 .navbar img {
   width: 30px;
+  cursor: pointer;
 }
 
 .navbar-search {

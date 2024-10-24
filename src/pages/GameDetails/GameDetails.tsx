@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useState, useRef, useEffect } from "react"
-
+import Navbar from "../../components/Navbar/Navbar"
 import './GameDetails.css'
 import { useFetchGameDetails } from "../../hooks/useFetchGameDetails"
 import { useFetchTrailer } from "../../hooks/useFetchTrailer"
@@ -26,7 +26,8 @@ const GameDetails = () => {
     setIsExpanded(!isExpanded);
   };
 
-  return (
+  return (<>
+    <Navbar />
     <div className={`gamedetails ${themeContext == 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'}`}>
       <div className="gamedetails-text">
         <h1>{details?.name}</h1>
@@ -40,7 +41,7 @@ const GameDetails = () => {
               {details?.description_raw.slice(maxLength)}
             </span>
           </p>
-          <button onClick={toggleReadMore} className={`${themeContext == 'dark'? 'dark-button': 'light-button'}`}>
+          <button onClick={toggleReadMore} className={`${themeContext == 'dark' ? 'dark-button' : 'light-button'}`}>
             {isExpanded ? 'Show Less' : 'Show More'}
           </button>
         </div>
@@ -108,6 +109,7 @@ const GameDetails = () => {
       </div>
 
     </div>
+  </>
   );
 }
 
