@@ -8,17 +8,7 @@ import useFetchPlatforms from '../../hooks/useFetchPlatforms';
 const Home = () => {
     const { genres, loading: loadingGenres, error: errorGenres } = useFetchGenres();
     const { platforms, loading: loadingPlatforms, error: errorPlatforms } = useFetchPlatforms();
-    if (loadingGenres || loadingPlatforms) {
-        return <span className="loader"></span>; 
-    }
 
-    if (errorGenres) {
-        return <div>{errorGenres}</div>; 
-    }
-
-    if (errorPlatforms) {
-        return <div>{errorPlatforms}</div>; 
-    }
 
     return (
         <div>
