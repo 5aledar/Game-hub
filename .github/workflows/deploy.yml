@@ -1,5 +1,4 @@
-
-name: Deploy to Vercel
+name: Deploy
 
 on:
   push:
@@ -8,16 +7,21 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [20.x] # Specify the Node.js version 20
+
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: '20' # or your desired Node.js version
+          node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
         run: npm install
@@ -25,9 +29,27 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v20
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v3 # Update to the latest version
         with:
-          vercel-token: ${{65K6hLyHQcpJ00ScRZvSGP8i}}
-          vercel-args: '--prod'
-          working-directory: ./ # Adjust this if your project is in a subfolder
+          name: production-files
+          path: ./dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3 # Update to the latest version
+        with:
+          name: production-files
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Automatically provided by GitHub
+          publish_dir: ./dist
