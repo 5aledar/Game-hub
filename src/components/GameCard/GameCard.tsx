@@ -42,7 +42,7 @@ const GameCard = ({ game }: GameCardProps) => {
                 <div key={item.platform.id} className='platform-container'>
                   <img
                     className='platformicon'
-                    src={`${import.meta.env.BASE_URL}/icons/${item.platform.slug}.svg`}
+                    src={`/icons/${item.platform.slug}.svg`}
                     alt=""
                   />
                 </div>
