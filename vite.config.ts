@@ -11,5 +11,6 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     base: "/deploy_react_app_github_pages_vercel",
 
+
   }
 })
