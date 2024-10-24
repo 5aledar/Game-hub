@@ -53,7 +53,7 @@ const Navbar = () => {
 
     return (
         <div className={`navbar ${themeContext === 'dark' ? 'text-dark dark-mode' : 'light-mode text-light'}`}>
-            <img onClick={()=> navigate('/')} className="navbar-logo" src="/images/logo.png" alt="Logo" />
+            <img onClick={() => navigate('/')} className="navbar-logo" src="/images/logo.png" alt="Logo" />
             <div className={`navbar-search ${themeContext === 'dark' ? 'search-dark' : 'search-light'}`}>
                 <input
                     type="text"
