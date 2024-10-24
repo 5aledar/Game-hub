@@ -8,7 +8,6 @@ import './index.css'
 import GameDetails from './pages/GameDetails/GameDetails';
 import { ThemeContextProvider } from './context/ThemeContext';
 import Landingpage from './pages/Landingpage/Landingpage';
-import { basename } from 'path';
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter(

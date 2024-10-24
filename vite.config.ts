@@ -12,3 +12,5 @@ export default defineConfig(({ mode }) => {
     base: '/Game-hub/'
   }
 })
+
+// 65K6hLyHQcpJ00ScRZvSGP8i
