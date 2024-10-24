@@ -8,29 +8,30 @@ import './index.css'
 import GameDetails from './pages/GameDetails/GameDetails';
 import { ThemeContextProvider } from './context/ThemeContext';
 import Landingpage from './pages/Landingpage/Landingpage';
+import { basename } from 'path';
 const queryClient = new QueryClient()
-const routes =  [
-  {
-    path: '/',
-    element: <Index />,
-    children: [
-      {
-        path: '',
-        element: <Landingpage/>
-      },
-      {
-        path: ':id',
-        element: <Home />,
-      },
-      {
-        path: '/games/:id',
-        element: <GameDetails />
-      }
-    ]
-  },
-]
+
 const router = createBrowserRouter(
-  routes,
+  [
+    {
+      path: '/',
+      element: <Index />,
+      children: [
+        {
+          path: '',
+          element: <Landingpage/>
+        },
+        {
+          path: ':id',
+          element: <Home />,
+        },
+        {
+          path: '/games/:id',
+          element: <GameDetails />
+        }
+      ]
+    },
+  ],
   { basename: import.meta.env.BASE_URL }
 )
 createRoot(document.getElementById('root')!).render(
