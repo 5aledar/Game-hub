@@ -47,11 +47,13 @@
 .search-dark input {
   transition: 0.3s;
   background-color: #313845;
+  color: white;
 }
 
 .search-light input {
   transition: 0.3s;
   background-color: #d4d9e3;
+  color: black;
   outline: 1px
 }
 
