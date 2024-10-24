@@ -40,7 +40,7 @@ const GameDetails = () => {
               {details?.description_raw.slice(maxLength)}
             </span>
           </p>
-          <button onClick={toggleReadMore} className="text-dark">
+          <button onClick={toggleReadMore} className={`${themeContext == 'dark'? 'dark-button': 'light-button'}`}>
             {isExpanded ? 'Show Less' : 'Show More'}
           </button>
         </div>

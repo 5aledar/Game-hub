@@ -146,3 +146,18 @@
   max-height: 500px;
   opacity: 1;
 }
+
+.dark-button{
+  background-color: #404a61;
+  color: white
+}
+.dark-button:hover{
+  background-color: #525d76;
+}
+.light-button{
+  background-color: #b7c7ee;
+  color: black;
+}
+.light-button:hover{
+  background-color: #8792ac;
+}
