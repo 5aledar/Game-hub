@@ -66,7 +66,7 @@ const Navbar = () => {
 
     return (
         <div className={`navbar ${themeContext === 'dark' ? 'text-dark dark-mode' : 'light-mode text-light'}`}>
-            <img onClick={() => navigate('/')} className="navbar-logo" src={`/fav-icon.svg`} alt="Logo" />
+            <img onClick={() => navigate('/')} className="navbar-logo" src={`${import.meta.env.BASE_URL}/fav-icon.svg`} alt="Logo" />
             <div className={`navbar-search ${themeContext === 'dark' ? 'search-dark' : 'search-light'}`}>
                 <input
                     type="text"
@@ -74,7 +74,7 @@ const Navbar = () => {
                     value={searchQuery}
                     onChange={handleSearchChange}
                 />
-                <img src={`/icons/search.svg`} alt="Search Icon" />
+                <img src={`${import.meta.env.BASE_URL}/icons/search.svg`} alt="Search Icon" />
                 {showSuggestions && games.length > 0 && (
                     <ul className="suggestions-dropdown">
                         {games.map((game) => (
