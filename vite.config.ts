@@ -9,8 +9,6 @@ export default defineConfig(({ mode }) => {
       'process.env.VITE_API_KEY': JSON.stringify(env.VITE_API_KEY)
     },
     plugins: [react()],
-    base: "/game-hub-khaled",
-
-
+    base: "/Game-hub/",
   }
 })
