@@ -9,14 +9,14 @@ import GameDetails from './pages/GameDetails/GameDetails';
 import { ThemeContextProvider } from './context/ThemeContext';
 import Landingpage from './pages/Landingpage/Landingpage';
 const queryClient = new QueryClient()
-const routes = [
+const routes =  [
   {
     path: '/',
     element: <Index />,
     children: [
       {
         path: '',
-        element: <Landingpage />
+        element: <Landingpage/>
       },
       {
         path: ':id',
@@ -29,7 +29,10 @@ const routes = [
     ]
   },
 ]
-const router = createBrowserRouter(routes)
+const router = createBrowserRouter(
+  routes,
+  { basename: import.meta.env.BASE_URL }
+)
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeContextProvider>
