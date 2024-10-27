@@ -3,38 +3,24 @@ import './GameFilter.css';
 import { useParams } from 'react-router-dom';
 import GamesContainer from '../GamesContainer/GamesContainer';
 import useFetchGames from '../../hooks/useFetchGames';
-import { Platform } from '../../utils/interfaces';
+import { Genre, Platform } from '../../utils/interfaces';
 import { useThemeContext } from '../../context/ThemeContext';
 import axiosInstance from '../../utils/axiosInstance';
 
 interface Props {
     platforms: Platform[];
+    genre?: Genre
 }
 
-const GameFilter = ({ platforms }: Props) => {
+const GameFilter = ({ platforms ,genre}: Props) => {
     const { themeContext } = useThemeContext();
     const [platformHeader, setPlatformHeader] = useState('PC');
-    const [genre, setGenre] = useState('Action');
-    const { id } = useParams<{ id: string }>();
     const [page, setPage] = useState(1);
     const [sortOption, setSortOption] = useState<string>('relevance');
     const [parentPlatform, setParentPlatform] = useState<number>(1);
 
-    const { games, nextPage, prevPage, error, isLoading } = useFetchGames(id!, parentPlatform, sortOption, page);
 
-    useEffect(() => {
-        const fetchGenre = async () => {
-            try {
-                const response = await axiosInstance.get(`/genres/${id}?key=${process.env.VITE_API_KEY}`);
-                if (response.status === 200) {
-                    setGenre(response.data.name);
-                }
-            } catch (error) {
-                console.error('Error fetching genre:', error);
-            }
-        };
-        fetchGenre();
-    }, [id]);
+
 
     const handlePlatformOnChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
         const selectedPlatform = platforms.find(platform => platform.name === event.target.value);
@@ -50,19 +36,10 @@ const GameFilter = ({ platforms }: Props) => {
         setPage(1);
     };
 
-    if (isLoading) {
-        return (
-            <div className="loading-spinner">
-                <div className="spinner"></div>
-            </div>
-        );
-    }
-    if (error) return <div>Error fetching games: {error.message}</div>;
-
     return (
         <>
             <div className={`gamefilter ${themeContext === 'dark' ? 'text-dark dark-mode' : 'text-light light-mode'}`}>
-                <h1>{platformHeader} {genre} Games</h1>
+                <h1>{platformHeader} {genre?.name} Games</h1>
                 <div className='gamefilter-container'>
                     <select 
                         name="platform" 
@@ -86,14 +63,7 @@ const GameFilter = ({ platforms }: Props) => {
                     </select>
                 </div>
             </div>
-            <div className='container'>
-                <GamesContainer games={games} />
-            </div>
-            <div className={`pagination text-dark ${themeContext === 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'}`}>
-                <button className={`${themeContext === 'dark' ? 'page-dark text-dark' : 'page-light text-light'}`} onClick={() => setPage(prev => Math.max(prev - 1, 1))} disabled={!prevPage}>-</button>
-                <span>Page {page}</span>
-                <button className={`${themeContext === 'dark' ? 'page-dark text-dark' : 'page-light text-light'}`} onClick={() => setPage(prev => prev + 1)} disabled={!nextPage}>+</button>
-            </div>
+           
         </>
     );
 };

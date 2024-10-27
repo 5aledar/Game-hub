@@ -1,30 +1,33 @@
-import { useState } from 'react'
-import { Genre } from '../../utils/interfaces'
-import { NavLink } from 'react-router-dom'
-import './Sidebar.css'
-import { useThemeContext } from '../../context/ThemeContext'
+import { Genre } from '../../utils/interfaces';
+import { NavLink } from 'react-router-dom';
+import './Sidebar.css';
+import { useThemeContext } from '../../context/ThemeContext';
 
 interface Props {
-    categories: Genre[]
+    categories: Genre[];
+    setGenre: React.Dispatch<React.SetStateAction<Genre | undefined>>;
 }
 
-const Sidebar = ({ categories }: Props) => {
-    const { themeContext } = useThemeContext()
+const Sidebar = ({ categories, setGenre }: Props) => {
+    const { themeContext } = useThemeContext();
+
     return (
-        <div className={`sidebar ${themeContext == 'dark' ? 'text-dark dark-mode' : 'text-light light-mode'}`}>
+        <div className={`sidebar ${themeContext === 'dark' ? 'text-dark dark-mode' : 'text-light light-mode'}`}>
             <h1>Genres</h1>
-            {
-                categories.map((item) => {
-                    return (
-                        <NavLink to={`/${item.id}`} className={({ isActive }) => (isActive ? `sidebar-game ${themeContext == 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'} active-link` : `sidebar-game  ${themeContext == 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'}`)} key={item.id} >
-                            <img src={item.image_background} loading='lazy' />
-                            <p>{item.name}</p>
-                        </NavLink>
-                    )
-                })
-            }
+            <ul>
+                {categories.map((item) => (
+                    <li
+                        key={item.id}
+                        className={`sidebar-game ${themeContext === 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'}`}
+                        onClick={() => setGenre(item)}
+                    >
+                        <img src={item.image_background} loading="lazy" alt={`${item.name} background`} />
+                        <p>{item.name}</p>
+                    </li>
+                ))}
+            </ul>
         </div>
-    )
-}
+    );
+};
 
-export default Sidebar
+export default Sidebar;

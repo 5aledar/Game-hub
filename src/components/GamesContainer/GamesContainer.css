@@ -5,23 +5,84 @@
         flex-wrap: wrap;
         justify-content: start;
         align-items: center;
-        padding-right: 15px;
     }
-
+    
 }
-
+.gamecontainer{
+    padding-right: 5px;
+    padding-left: 200px;
+    padding-top: 20px;
+}
 @media (min-width: 420px ) {
     .gamecontainer {
         display: flex;
         flex-wrap: wrap;
         column-gap: 8px;
-        padding-right: 10px;
-        padding-top: 40px;
     }
 }
 
-@media (max-width: 530px) {
-    .gamecontainer {
-        padding-top: 150px;
-    }
+
+
+
+.gamecontainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Skeleton Card Placeholder */
+.skeleton-card {
+    width: 200px;
+    height: 220px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 40px;
+    transition: 0.3s;
+}
+
+/* Skeleton Image Placeholder */
+.skeleton-image {
+    width: 100%;
+    height: 160px;
+    background-color: #e0e0e0;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Skeleton Info Section */
+.skeleton-info {
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Skeleton Title Placeholder */
+.skeleton-title {
+    width: 80%;
+    height: 12px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Skeleton Rating Placeholder */
+.skeleton-rating {
+    width: 30%;
+    height: 12px;
+    background-color: #e0e0e0;
+    border-radius: 3px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { background-color: #e0e0e0; }
+    50% { background-color: #cfcfcf; }
+    100% { background-color: #e0e0e0; }
 }

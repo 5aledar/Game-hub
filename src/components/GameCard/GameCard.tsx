@@ -14,10 +14,14 @@ const GameCard = ({ game }: GameCardProps) => {
     setIsLoading(false);
   };
 
-
   const handleImageError = () => {
     setIsLoading(false);
   };
+
+  // Modify the background_image URL to request a smaller, cropped version if possible
+  const croppedImageUrl = background_image
+    ? `${background_image}?w=300&h=200&fit=crop`
+    : "/images/logo.png";
 
   return (
     <div className={`gamecard-container ${themeContext === 'dark' ? 'text-dark' : 'text-light'}`} onClick={() => navigate(`/games/${id}`)}>
@@ -27,8 +31,7 @@ const GameCard = ({ game }: GameCardProps) => {
 
         <img
           className='poster'
-          src={background_image || "/images/logo.png"}
-       
+          src={croppedImageUrl}
           alt={`${name} bg`}
           onLoad={handleImageLoad}     
           onError={handleImageError}   
