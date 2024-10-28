@@ -7,25 +7,24 @@ import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { useEffect, useState } from 'react';
 
 interface Prop {
-    id?: string;
     parentPlatform?: number;
     sortOption?: string;
     genreId: string | undefined;
+    searchQuery?: string | undefined
 }
 
-const GamesContainer = ({ id, parentPlatform, genreId, sortOption }: Prop) => {
+const GamesContainer = ({ parentPlatform, genreId, sortOption ,searchQuery}: Prop) => {
     const [page, setPage] = useState(1);
     const [allGames, setAllGames] = useState<Game[]>([]);
-    const { games, nextPage, error, isLoading } = useFetchGames(genreId, parentPlatform, sortOption, page);
+    const { games, nextPage, error, isLoading } = useFetchGames(genreId, parentPlatform, sortOption, page , searchQuery);
     const { themeContext } = useThemeContext();
 
     const lastGameRef = useInfiniteScroll(nextPage, () => setPage((prev) => prev + 1), isLoading);
 
     useEffect(() => {
-
         setPage(1);
         setAllGames([]);
-    }, [genreId , parentPlatform , sortOption]);
+    }, [genreId, parentPlatform, sortOption, searchQuery]);
 
     useEffect(() => {
         if (!isLoading && games.length > 0) {
@@ -53,7 +52,7 @@ const GamesContainer = ({ id, parentPlatform, genreId, sortOption }: Prop) => {
             {allGames.map((game: Game, index: number) => {
                 const isLastGame = index === allGames.length - 1;
                 return (
-                    <div ref={isLastGame ? lastGameRef : null} key={game.id}>
+                    <div ref={isLastGame ? lastGameRef : null} key={`${game.id}-${index}`}>
                         <GameCard game={game} />
                     </div>
                 );

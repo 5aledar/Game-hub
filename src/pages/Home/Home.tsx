@@ -13,13 +13,14 @@ const Home = () => {
     const [genre, setGenre] = useState<Genre>()
     const [platform, setPlatform] = useState<number | undefined>(undefined)
     const [sortOption, setSortOption] = useState<string | undefined>(undefined)
+    const [searchQuery, setSearchQuery] = useState<string |undefined>('');
     return (
         <div>
-            <Navbar />
-            <Sidebar categories={genres} setGenre={setGenre} />
+            <Navbar setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
+            <Sidebar categories={genres} setGenre={setGenre}  />
             <div>
                 <GameFilter platforms={platforms} genre={genre} setPlatform={setPlatform} setSortOption={setSortOption} />
-                <GamesContainer genreId={genre ? `${genre.id}` : undefined} parentPlatform={platform ? platform : undefined} sortOption={sortOption} />
+                <GamesContainer genreId={genre ? `${genre.id}` : undefined} parentPlatform={platform ? platform : undefined} sortOption={sortOption} searchQuery={searchQuery}/>
             </div>
         </div>
     );
