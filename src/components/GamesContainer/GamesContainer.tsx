@@ -13,10 +13,10 @@ interface Prop {
     searchQuery?: string | undefined
 }
 
-const GamesContainer = ({ parentPlatform, genreId, sortOption ,searchQuery}: Prop) => {
+const GamesContainer = ({ parentPlatform, genreId, sortOption, searchQuery }: Prop) => {
     const [page, setPage] = useState(1);
     const [allGames, setAllGames] = useState<Game[]>([]);
-    const { games, nextPage, error, isLoading } = useFetchGames(genreId, parentPlatform, sortOption, page , searchQuery);
+    const { games, nextPage, error, isLoading } = useFetchGames(genreId, parentPlatform, sortOption, page, searchQuery);
     const { themeContext } = useThemeContext();
 
     const lastGameRef = useInfiniteScroll(nextPage, () => setPage((prev) => prev + 1), isLoading);
@@ -36,11 +36,11 @@ const GamesContainer = ({ parentPlatform, genreId, sortOption ,searchQuery}: Pro
         <div className='skeleton-contaier'>
             {
                 Array.from({ length: 10 }).map((_, index) => (
-                    <div key={index} className="skeleton-card">
-                        <div className="skeleton-image"></div>
+                    <div key={index} className={`${themeContext == 'dark' ? ' skeleton-card-dark' : ' skeleton-card'}`}>
+                        <div className={`${themeContext == 'dark' ? 'skeleton-image-dark' : 'skeleton-image'}`}></div>
                         <div className="skeleton-info">
-                            <div className="skeleton-title"></div>
-                            <div className="skeleton-rating"></div>
+                            <div className={`${themeContext == 'dark' ? 'skeleton-title-dark' : 'skeleton-title'} `}></div>
+                            <div className={`${themeContext == 'dark' ? ' skeleton-rating-dark' : ' skeleton-rating'}`}></div>
                         </div>
                     </div>
                 ))}
