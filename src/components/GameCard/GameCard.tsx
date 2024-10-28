@@ -18,14 +18,14 @@ const GameCard = ({ game }: GameCardProps) => {
     setIsLoading(false);
   };
 
-  const getImgixUrl = (url:string, width = 400, height = 400) => {
+  const getImgkitUrl = (url:string, width = 200, height = 200) => {
     const path = url.replace("https://media.rawg.io", ""); 
-    return `https://khaled-265151083.imgix.net${path}?w=${width}&h=${height}&fit=crop`;
+    return `https://ik.imagekit.io/angwisa${path}?tr=w-${width},h-${height}`;
   };
 
 
   const croppedImageUrl = background_image
-    ? getImgixUrl(background_image)
+    ? getImgkitUrl(background_image)
     : "/images/logo.png";
 
   return (
