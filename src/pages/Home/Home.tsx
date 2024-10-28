@@ -11,14 +11,15 @@ const Home = () => {
     const { genres, } = useFetchGenres();
     const { platforms } = useFetchPlatforms();
     const [genre, setGenre] = useState<Genre>()
-    const [platform, setPlatform] = useState(undefined)
+    const [platform, setPlatform] = useState<number | undefined>(undefined)
+    const [sortOption, setSortOption] = useState<string | undefined>(undefined)
     return (
         <div>
             <Navbar />
             <Sidebar categories={genres} setGenre={setGenre} />
             <div>
-                <GameFilter platforms={platforms} genre={genre} />
-                <GamesContainer genreId={`${genre?.id}`} />
+                <GameFilter platforms={platforms} genre={genre} setPlatform={setPlatform} setSortOption={setSortOption} />
+                <GamesContainer genreId={genre ? `${genre.id}` : undefined} parentPlatform={platform ? platform : undefined} sortOption={sortOption} />
             </div>
         </div>
     );

@@ -9,15 +9,17 @@ import axiosInstance from '../../utils/axiosInstance';
 
 interface Props {
     platforms: Platform[];
-    genre?: Genre
+    genre?: Genre;
+    setPlatform?: React.Dispatch<React.SetStateAction<number | undefined>>;
+    setSortOption: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-const GameFilter = ({ platforms ,genre}: Props) => {
+const GameFilter = ({ platforms, genre, setPlatform ,setSortOption}: Props) => {
     const { themeContext } = useThemeContext();
     const [platformHeader, setPlatformHeader] = useState('PC');
     const [page, setPage] = useState(1);
-    const [sortOption, setSortOption] = useState<string>('relevance');
-    const [parentPlatform, setParentPlatform] = useState<number>(1);
+    const [sort, setSort] = useState<string>('relevance');
+  
 
 
 
@@ -26,13 +28,14 @@ const GameFilter = ({ platforms ,genre}: Props) => {
         const selectedPlatform = platforms.find(platform => platform.name === event.target.value);
         if (selectedPlatform) {
             setPlatformHeader(event.target.value);
-            setParentPlatform(selectedPlatform.id);
+            setPlatform!(selectedPlatform.id)
             setPage(1);
         }
     };
 
     const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSortOption(e.target.value);
+        setSort(e.target.value)
         setPage(1);
     };
 
@@ -41,19 +44,19 @@ const GameFilter = ({ platforms ,genre}: Props) => {
             <div className={`gamefilter ${themeContext === 'dark' ? 'text-dark dark-mode' : 'text-light light-mode'}`}>
                 <h1>{platformHeader} {genre?.name} Games</h1>
                 <div className='gamefilter-container'>
-                    <select 
-                        name="platform" 
+                    <select
+                        name="platform"
                         value={platformHeader}
-                        className={`${themeContext === 'dark' ? 'select-dark text-dark' : 'select-light text-light'}`} 
+                        className={`${themeContext === 'dark' ? 'select-dark text-dark' : 'select-light text-light'}`}
                         onChange={handlePlatformOnChange}
                     >
                         {platforms.map(item => (
                             <option key={item.id} value={item.name}>{item.name}</option>
                         ))}
                     </select>
-                    <select 
-                        value={sortOption} 
-                        className={`${themeContext === 'dark' ? 'select-dark text-dark' : 'select-light text-light'} sortingfilter`} 
+                    <select
+                        value={sort}
+                        className={`${themeContext === 'dark' ? 'select-dark text-dark' : 'select-light text-light'} sortingfilter`}
                         onChange={handleSortChange}
                     >
                         <option value="relevance">Relevance</option>
@@ -63,7 +66,7 @@ const GameFilter = ({ platforms ,genre}: Props) => {
                     </select>
                 </div>
             </div>
-           
+
         </>
     );
 };

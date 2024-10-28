@@ -8,7 +8,7 @@ const GameCard = ({ game }: GameCardProps) => {
   const { themeContext } = useThemeContext();
   const { id, name, background_image, parent_platforms, rating } = game;
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleImageLoad = () => {
     setIsLoading(false);
@@ -18,24 +18,29 @@ const GameCard = ({ game }: GameCardProps) => {
     setIsLoading(false);
   };
 
-  // Modify the background_image URL to request a smaller, cropped version if possible
+  const getImgixUrl = (url:string, width = 400, height = 400) => {
+    const path = url.replace("https://media.rawg.io", ""); 
+    return `https://khaled-265151083.imgix.net${path}?w=${width}&h=${height}&fit=crop`;
+  };
+
+
   const croppedImageUrl = background_image
-    ? `${background_image}?w=300&h=200&fit=crop`
+    ? getImgixUrl(background_image)
     : "/images/logo.png";
 
   return (
     <div className={`gamecard-container ${themeContext === 'dark' ? 'text-dark' : 'text-light'}`} onClick={() => navigate(`/games/${id}`)}>
       <div key={id} className='gamecard'>
-     
         {isLoading && <div className="image-loader"></div>}
 
         <img
           className='poster'
           src={croppedImageUrl}
           alt={`${name} bg`}
-          onLoad={handleImageLoad}     
-          onError={handleImageError}   
-          style={{ display: isLoading ? 'none' : 'block' }} 
+         
+          onLoad={handleImageLoad}
+          onError={handleImageError}
+          style={{ display: isLoading ? 'none' : 'block' }}
         />
 
         <div className={`gamecard-info ${themeContext === 'dark' ? 'dark' : 'light'}`}>

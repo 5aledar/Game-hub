@@ -1,46 +1,36 @@
-@media (min-width: 720px) {
-    .gamecontainer {
-        display: flex;
-        column-gap: 10px;
-        flex-wrap: wrap;
-        justify-content: start;
-        align-items: center;
-    }
-    
-}
-.gamecontainer{
-    padding-right: 5px;
-    padding-left: 200px;
-    padding-top: 20px;
-}
-@media (min-width: 420px ) {
-    .gamecontainer {
-        display: flex;
-        flex-wrap: wrap;
-        column-gap: 8px;
-    }
-}
-
-
 
 
 .gamecontainer {
     display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-right: 5px;
+    padding-left: 200px;
+    padding-top: 20px;
     flex-wrap: wrap;
-    gap: 1rem;
 }
+
+@media (min-width: 420px) {
+    .gamecontainer {
+        column-gap: 1.5rem;
+    }
+}
+
+
+
+
+
 
 /* Skeleton Card Placeholder */
 .skeleton-card {
-    width: 200px;
-    height: 220px;
+    width: 225px;
+    height: 260px;
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     margin-bottom: 40px;
     transition: 0.3s;
 }
@@ -82,7 +72,24 @@
 
 /* Pulse Animation */
 @keyframes pulse {
-    0% { background-color: #e0e0e0; }
-    50% { background-color: #cfcfcf; }
-    100% { background-color: #e0e0e0; }
+    0% {
+        background-color: #e0e0e0;
+    }
+
+    50% {
+        background-color: #cfcfcf;
+    }
+
+    100% {
+        background-color: #e0e0e0;
+    }
+}
+
+.skeleton-contaier{
+   column-gap: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: wrap;
+    align-items: center;
 }

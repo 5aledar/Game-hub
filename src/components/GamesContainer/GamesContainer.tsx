@@ -10,7 +10,7 @@ interface Prop {
     id?: string;
     parentPlatform?: number;
     sortOption?: string;
-    genreId: string
+    genreId: string | undefined;
 }
 
 const GamesContainer = ({ id, parentPlatform, genreId, sortOption }: Prop) => {
@@ -19,9 +19,13 @@ const GamesContainer = ({ id, parentPlatform, genreId, sortOption }: Prop) => {
     const { games, nextPage, error, isLoading } = useFetchGames(genreId, parentPlatform, sortOption, page);
     const { themeContext } = useThemeContext();
 
-
     const lastGameRef = useInfiniteScroll(nextPage, () => setPage((prev) => prev + 1), isLoading);
 
+    useEffect(() => {
+
+        setPage(1);
+        setAllGames([]);
+    }, [genreId , parentPlatform , sortOption]);
 
     useEffect(() => {
         if (!isLoading && games.length > 0) {
@@ -30,15 +34,18 @@ const GamesContainer = ({ id, parentPlatform, genreId, sortOption }: Prop) => {
     }, [games, isLoading]);
 
     const renderSkeletons = () => (
-        Array.from({ length: 5 }).map((_, index) => (
-            <div key={index} className="skeleton-card">
-                <div className="skeleton-image"></div>
-                <div className="skeleton-info">
-                    <div className="skeleton-title"></div>
-                    <div className="skeleton-rating"></div>
-                </div>
-            </div>
-        ))
+        <div className='skeleton-contaier'>
+            {
+                Array.from({ length: 10 }).map((_, index) => (
+                    <div key={index} className="skeleton-card">
+                        <div className="skeleton-image"></div>
+                        <div className="skeleton-info">
+                            <div className="skeleton-title"></div>
+                            <div className="skeleton-rating"></div>
+                        </div>
+                    </div>
+                ))}
+        </div>
     );
 
     return (
@@ -52,7 +59,11 @@ const GamesContainer = ({ id, parentPlatform, genreId, sortOption }: Prop) => {
                 );
             })}
 
-            {isLoading && renderSkeletons()}
+            {isLoading &&
+
+                renderSkeletons()
+
+            }
 
             {error && <p className="error-message">Error loading games: {error.message}</p>}
         </div>

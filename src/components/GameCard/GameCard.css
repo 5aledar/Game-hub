@@ -1,7 +1,7 @@
 .gamecard-container {
-    width: 200px;
-    height: 220px;
-    margin-bottom: 40px;
+    width: 225px;
+    height: 260px;
+    margin-bottom: 1.5rem;
     transition: 0.3s;
 }
 
@@ -23,7 +23,7 @@
     width: 100%;
 
     height: 160px;
-    object-fit: cover;
+object-fit: cover;
     transition: 0.3s;
 }
 
@@ -40,10 +40,11 @@
 }
 .gamecard-info {
     width: 100%;
-    height: 80px;
+    height: 100px;
     border-radius: 0 0 8px 8px;
     display: flex;
-
+    justify-content: space-between;
+    padding-bottom: 20px;
     flex-direction: column;
 
 }
