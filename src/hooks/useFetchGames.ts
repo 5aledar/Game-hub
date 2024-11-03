@@ -16,13 +16,7 @@ const fetchGames = async (genreId?: string, platformId?: number, sortOption?: st
     const response = await axiosInstance.get('/games', { params });
     return response.data;
 };
-const useFetchGames = (
-    genreId?: string,
-    platformId?: number,
-    sortOption?: string,
-    page: number = 1,
-    searchQuery?: string
-) => {
+const useFetchGames = (genreId?: string, platformId?: number, sortOption?: string, page: number = 1, searchQuery?: string) => {
     const { data, error, isLoading } = useQuery({
         queryKey: ['games', genreId, platformId, sortOption, page, searchQuery],
         queryFn: () => fetchGames(genreId, platformId, sortOption, page, searchQuery),

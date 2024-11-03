@@ -10,7 +10,7 @@ const GameDetails = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef<HTMLSpanElement | null>(null);
   const maxLength = 200;
-  const { details, loading, error } = useFetchGameDetails(id!);
+  const { details, isLoading, error } = useFetchGameDetails(id!);
   const trailers = useFetchTrailer(id!);
 
   const toggleReadMore = () => {
@@ -30,13 +30,13 @@ const GameDetails = () => {
         flexDirection={{ base: "column", md: "row" }}
         margin={{ base: "20px", md: "0" }}
       >
-        {loading && (
+        {isLoading && (
           <Spinner color="blue.500" size="xl" margin="auto" />
         )}
 
-        {error && <Text color="red.500">{error}</Text>}
+        {error && <Text color="red.500">{error.message}</Text>}
 
-        {!loading && !error && (
+        {!isLoading && !error && (
           <>
             <Box
               className="gamedetails-text"
@@ -144,8 +144,8 @@ const GameDetails = () => {
                 marginTop={2}
                 flexDirection={{ base: "column", md: "row" }}
               >
-                <Image src={details?.background_image} alt="" objectFit="cover" width={{ lg: '49%',md:'49%' , sm: '100%' }} />
-                <Image src={details?.background_image_additional} alt="" objectFit="cover" width={{ lg: '49%',md:'49%', sm: '100%' }} />
+                <Image src={details?.background_image} alt="" objectFit="cover" width={{ lg: '49%', md: '49%', sm: '100%' }} />
+                <Image src={details?.background_image_additional} alt="" objectFit="cover" width={{ lg: '49%', md: '49%', sm: '100%' }} />
               </Flex>
             </Box>
           </>
