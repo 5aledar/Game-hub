@@ -1,18 +1,16 @@
-import { useState, useEffect } from "react";
 import axiosInstance from "../utils/axiosInstance";
-import { Trailer } from "../utils/interfaces";
+import { useQuery } from "@tanstack/react-query";
 export const useFetchTrailer = (id: string) => {
-    const [trailers, setTrailers] = useState<Trailer[]>([])
-    useEffect(() => {
-        const fetchTrailers = async () => {
-            try {
-                const response = await axiosInstance.get(`/games/${id}/movies?key=${process.env.VITE_API_KEY}`)
-                setTrailers(response.data.results)
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchTrailers()
-    }, [id])
-    return trailers
+    const { data, error, isLoading } = useQuery({
+        queryKey: ['trailer', id],
+        queryFn: () => fetchTrailer(id)
+    })
+    return {
+        trailers: data?.results || [],
+    }
+}
+const fetchTrailer = async (id: string) => {
+    const { data } = await axiosInstance.get(`/games/${id}/movies?key=${process.env.VITE_API_KEY}`)
+
+    return data;
 }

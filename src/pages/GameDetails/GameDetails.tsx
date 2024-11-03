@@ -11,7 +11,7 @@ const GameDetails = () => {
   const contentRef = useRef<HTMLSpanElement | null>(null);
   const maxLength = 200;
   const { details, isLoading, error } = useFetchGameDetails(id!);
-  const trailers = useFetchTrailer(id!);
+  const {trailers} = useFetchTrailer(id!);
 
   const toggleReadMore = () => {
     setIsExpanded((prev) => !prev);
