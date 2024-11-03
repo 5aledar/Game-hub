@@ -1,4 +1,3 @@
-// src/hooks/useInfiniteScroll.ts
 import { useEffect, useRef } from 'react';
 
 const useInfiniteScroll = (hasNextPage: boolean, loadMore: () => void, isLoading: boolean) => {

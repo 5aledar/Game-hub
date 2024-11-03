@@ -3,7 +3,7 @@ import { Box, Flex, Heading } from '@chakra-ui/react';
 import {
     NativeSelectField,
     NativeSelectRoot,
-} from '@/components/ui/native-select'; // Ensure this path is correct
+} from '@/components/ui/native-select'; 
 import { Genre, Platform } from '../../utils/interfaces';
 import './GameFilter.css'
 interface Props {

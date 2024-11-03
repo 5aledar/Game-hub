@@ -56,8 +56,8 @@ const GameDetails = () => {
                 overflowY="auto"
                 css={{
                   '&::-webkit-scrollbar': { display: 'none' },
-                  '-ms-overflow-style': 'none',  // for IE and Edge
-                  'scrollbarWidth': 'none'       // for Firefox
+                  '-ms-overflow-style': 'none', 
+                  'scrollbarWidth': 'none'       
                 }}
               >
                 <Text>
