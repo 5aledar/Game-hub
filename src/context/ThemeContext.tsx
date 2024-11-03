@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-
 interface ThemeContextType {
-    themeContext: string; 
+    themeContext: string;
     setThemeContext: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -17,7 +16,7 @@ export const useThemeContext = () => {
 };
 
 export const ThemeContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [themeContext, setThemeContext] = useState<string>('light'); 
+    const [themeContext, setThemeContext] = useState<string>('light');
     return (
         <ThemeContext.Provider value={{ themeContext, setThemeContext }}>
             {children}
