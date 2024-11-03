@@ -6,8 +6,9 @@ import Home from './pages/Home/Home';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './index.css'
 import GameDetails from './pages/GameDetails/GameDetails';
-import { ThemeContextProvider } from './context/ThemeContext';
 import { Provider } from './components/ui/provider';
+import { ColorModeProvider } from "@/components/ui/color-mode"
+
 
 
 const queryClient = new QueryClient()
@@ -33,11 +34,11 @@ const router = createBrowserRouter(
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider>
-      <ThemeContextProvider>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
-      </ThemeContextProvider>
+      <ColorModeProvider>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
+      </ColorModeProvider>
     </Provider>
   </StrictMode>,
 )

@@ -5,7 +5,6 @@ import {
     NativeSelectRoot,
 } from '@/components/ui/native-select'; // Ensure this path is correct
 import { Genre, Platform } from '../../utils/interfaces';
-import { useThemeContext } from '../../context/ThemeContext';
 import './GameFilter.css'
 interface Props {
     platforms: Platform[];
@@ -15,7 +14,6 @@ interface Props {
 }
 
 const GameFilter = ({ platforms, genre, setPlatform, setSortOption }: Props) => {
-    const { themeContext } = useThemeContext();
     const [platformHeader, setPlatformHeader] = useState('PC');
     const [sort, setSort] = useState<string>('relevance');
 
@@ -34,7 +32,7 @@ const GameFilter = ({ platforms, genre, setPlatform, setSortOption }: Props) => 
 
     return (
         <Box className="gamefilter" w={'fit-content'}>
-            <Heading mb="20px" color={themeContext === 'dark' ? 'white' : 'black'}>
+            <Heading mb="20px" color={{ base: 'black', _dark: 'white' }}>
                 {platformHeader} {genre?.name} Games
             </Heading>
             <Flex className="gamefilter-container">
@@ -43,7 +41,8 @@ const GameFilter = ({ platforms, genre, setPlatform, setSortOption }: Props) => 
                         name="platform"
                         value={platformHeader}
                         onChange={handlePlatformOnChange}
-                        className={themeContext === 'dark' ? 'select-dark' : 'select-light'}
+                        bg={{ base: 'rgb(237, 245, 253)', _dark: '#2E3440' }}
+                        color={{ base: 'black', _dark: 'white' }}
                     >
                         {platforms.map(item => (
                             <option key={item.id} value={item.name}>
@@ -56,7 +55,8 @@ const GameFilter = ({ platforms, genre, setPlatform, setSortOption }: Props) => 
                     <NativeSelectField
                         value={sort}
                         onChange={handleSortChange}
-                        className={themeContext === 'dark' ? 'select-dark' : 'select-light'}
+                        bg={{ base: 'rgb(237, 245, 253)', _dark: '#2E3440' }}
+                        color={{ base: 'black', _dark: 'white' }}
                     >
                         <option value="relevance">Relevance</option>
                         <option value="name">Name</option>

@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { GameCardProps } from '../../utils/interfaces';
 import { useNavigate } from 'react-router-dom';
-import { useThemeContext } from '../../context/ThemeContext';
 import { Box, Image, Spinner, Text } from "@chakra-ui/react";
 
 const GameCard = ({ game }: GameCardProps) => {
-  const { themeContext } = useThemeContext();
   const { id, name, background_image, parent_platforms, rating } = game;
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
@@ -18,8 +16,8 @@ const GameCard = ({ game }: GameCardProps) => {
     setIsLoading(false);
   };
 
-  const getImgkitUrl = (url:string, width = 200, height = 200) => {
-    const path = url.replace("https://media.rawg.io", ""); 
+  const getImgkitUrl = (url: string, width = 200, height = 200) => {
+    const path = url.replace("https://media.rawg.io", "");
     return `https://ik.imagekit.io/angwisa${path}?tr=w-${width},h-${height}`;
   };
 
@@ -35,8 +33,8 @@ const GameCard = ({ game }: GameCardProps) => {
       transition="0.3s"
       _hover={{ transform: 'scale(1.03)', cursor: 'pointer' }}
       onClick={() => navigate(`/games/${id}`)}
-      className={`gamecard-container ${themeContext === 'dark' ? 'text-dark' : 'text-light'}`}
-      bg={themeContext === 'dark' ? '#2C3548' : 'rgb(237, 245, 253)'}
+      className={`gamecard-container`}
+      bg={{ base: 'rgb(237, 245, 253)', _dark: '#2C3548' }}
       borderRadius="8px"
       display="flex"
       flexDirection="column"
@@ -101,7 +99,7 @@ const GameCard = ({ game }: GameCardProps) => {
             {Math.trunc((rating * 2) * 10)}
           </Text>
         </Box>
-        <Text className="gamecard-title" fontSize="md" fontWeight="medium" pl="2">
+        <Text className="gamecard-title" fontSize="md" fontWeight="medium" pl="2" color={{ base: 'black', _dark: 'white' }}>
           {name}
         </Text>
       </Box>

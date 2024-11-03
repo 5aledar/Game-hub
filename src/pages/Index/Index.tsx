@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom'
 import './Index.css'
-import { useThemeContext } from '../../context/ThemeContext'
+import { Box } from '@chakra-ui/react'
 const Index = () => {
-  const {themeContext} = useThemeContext()
+
   return (
-    <div className={`${themeContext == 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'} index`}>
-        <Outlet />
-    </div>
+    <Box className={`index`} color={{ base: 'black', _dark: 'white' }} bg={{ base: 'white', _dark: '#1A202C' }}>
+      <Outlet />
+    </Box>
   )
 }
 

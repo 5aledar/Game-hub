@@ -7,6 +7,7 @@ import useFetchGenres from '../../hooks/useFetchGenres';
 import useFetchPlatforms from '../../hooks/useFetchPlatforms';
 import GamesContainer from '../../components/GamesContainer/GamesContainer';
 import { Genre } from '../../utils/interfaces';
+import { Box } from '@chakra-ui/react';
 const Home = () => {
     const { genres, } = useFetchGenres();
     const { platforms } = useFetchPlatforms();
@@ -15,14 +16,14 @@ const Home = () => {
     const [sortOption, setSortOption] = useState<string | undefined>(undefined)
     const [searchQuery, setSearchQuery] = useState<string |undefined>('');
     return (
-        <div >
+        <Box >
             <Navbar setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
             <Sidebar categories={genres} setGenre={setGenre}  />
-            <div>
+            <Box>
                 <GameFilter platforms={platforms} genre={genre} setPlatform={setPlatform} setSortOption={setSortOption} />
                 <GamesContainer genreId={genre ? `${genre.id}` : undefined} parentPlatform={platform ? platform : undefined} sortOption={sortOption} searchQuery={searchQuery}/>
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 };
 

@@ -1,11 +1,11 @@
 import GameCard from '../GameCard/GameCard';
 import './GamesContainer.css';
 import { Game } from '../../utils/interfaces';
-import { useThemeContext } from '../../context/ThemeContext';
 import useFetchGames from '../../hooks/useFetchGames';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { useEffect, useState } from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, HStack, Stack } from '@chakra-ui/react';
+import { Skeleton, SkeletonText } from '../ui/skeleton';
 interface Prop {
     parentPlatform?: number;
     sortOption?: string;
@@ -17,7 +17,6 @@ const GamesContainer = ({ parentPlatform, genreId, sortOption, searchQuery }: Pr
     const [page, setPage] = useState(1);
     const [allGames, setAllGames] = useState<Game[]>([]);
     const { games, nextPage, error, isLoading } = useFetchGames(genreId, parentPlatform, sortOption, page, searchQuery);
-    const { themeContext } = useThemeContext();
 
     const lastGameRef = useInfiniteScroll(nextPage, () => setPage((prev) => prev + 1), isLoading);
 
@@ -36,19 +35,30 @@ const GamesContainer = ({ parentPlatform, genreId, sortOption, searchQuery }: Pr
         <Box className='skeleton-contaier'>
             {
                 Array.from({ length: 10 }).map((_, index) => (
-                    <Box key={index} className={`${themeContext == 'dark' ? ' skeleton-card-dark' : ' skeleton-card'}`}>
-                        <Box className={`${themeContext == 'dark' ? 'skeleton-image-dark' : 'skeleton-image'}`}></Box>
-                        <Box className="skeleton-info">
-                            <Box className={`${themeContext == 'dark' ? 'skeleton-title-dark' : 'skeleton-title'} `}></Box>
-                            <Box className={`${themeContext == 'dark' ? ' skeleton-rating-dark' : ' skeleton-rating'}`}></Box>
-                        </Box>
-                    </Box>
+                    <Stack key={index}
+                        width={'225px'}
+                        height={'260px'}
+                        border-radius={'8px'}
+                        marginBottom={4}
+                        gap={2}
+                        bg={{ base: '#25252518', _dark: '#2C3548' }}
+                    >
+                        <Skeleton
+                            width={'100%'}
+                            height={'160px'}
+                            loading={isLoading}
+                            marginBottom={2}
+                        />
+                        <SkeletonText noOfLines={2} gap={2}
+                        />
+                    </Stack>
                 ))}
         </Box>
     );
 
     return (
-        <Box className={`gamecontainer ${themeContext === 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'}`}>
+        <Box className={`gamecontainer `}
+        >
             {allGames.map((game: Game, index: number) => {
                 const isLastGame = index === allGames.length - 1;
                 return (
@@ -59,9 +69,7 @@ const GamesContainer = ({ parentPlatform, genreId, sortOption, searchQuery }: Pr
             })}
 
             {isLoading &&
-
                 renderSkeletons()
-
             }
 
             {error && <p className="error-message">Error loading games: {error.message}</p>}

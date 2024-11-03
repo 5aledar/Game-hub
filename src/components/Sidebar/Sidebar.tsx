@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Heading, Flex, Text, Image } from '@chakra-ui/react';
 import { Genre } from '../../utils/interfaces';
-import { useThemeContext } from '../../context/ThemeContext';
 import { Icon } from '@chakra-ui/react';
 import { IoMdMenu } from "react-icons/io";
 import './Sidebar.css'
@@ -9,9 +8,7 @@ interface Props {
     categories: Genre[];
     setGenre: React.Dispatch<React.SetStateAction<Genre | undefined>>;
 }
-
 const Sidebar = ({ categories, setGenre }: Props) => {
-    const { themeContext } = useThemeContext();
     const [selectedGenreId, setSelectedGenreId] = useState<number | undefined>(undefined);
     const [visible, setVisible] = useState<boolean>(false)
     const handleGenreClick = (item: Genre) => {
@@ -29,7 +26,7 @@ const Sidebar = ({ categories, setGenre }: Props) => {
                 visible && <Box className='overlay'>
                         {
                             categories.map(item=> (
-                             <Flex className='gerne-item' onClick={() => handleGenreClick(item)}>
+                             <Flex  padding={'5px'} cursor={'pointer'} onClick={() => handleGenreClick(item)} bg={{base:{base: '#e0e0e0' , _hover:'white'} , _dark:{base: '#3f4b6c' , _hover: '#55607d'}}} color={{base: 'black' , _dark: 'white'}}>
                                 <Text>
                                     {item.name}
                                 </Text>
@@ -44,10 +41,11 @@ const Sidebar = ({ categories, setGenre }: Props) => {
                         display: 'none',
                     },
                     scrollbarWidth: 'none',
-
                 }}
-                className={`${themeContext === 'dark' ? 'dark-mode' : 'light-mode'} sidebar`}
-            >
+                className={`sidebar`}
+                bg={{base:'white' , _dark:'#1A202C'}}
+                color={{base: 'black' , _dark: 'white'}}
+            >   
                 <Heading fontSize="22px" mb="10px">Genres</Heading>
                 {categories.map((item) => (
                     <Flex
