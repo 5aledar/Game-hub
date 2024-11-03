@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import GameFilter from '../../components/GameFilter/GameFilter';
 import { useFetchGenres } from '../../hooks/useFetchGenres';
-import useFetchPlatforms from '../../hooks/useFetchPlatforms';
+import { useFetchPlatforms } from '../../hooks/useFetchPlatforms';
 import GamesContainer from '../../components/GamesContainer/GamesContainer';
 import { Genre } from '../../utils/interfaces';
 import { Box } from '@chakra-ui/react';
