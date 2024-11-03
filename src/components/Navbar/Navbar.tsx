@@ -20,7 +20,8 @@ const Navbar = ({ setSearchQuery, searchQuery }: Props) => {
             height="50px"
             width="100%"
             paddingLeft={'20px'}
-            paddingRight={'40px'}
+            paddingRight={'20px'}
+            gap={3}
             position="fixed"
             zIndex="10"
             bg={{ base: "#fff", _dark: '#1A202C' }}
