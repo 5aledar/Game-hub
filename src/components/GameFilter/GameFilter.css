@@ -1,8 +1,11 @@
 .gamefilter {
-    width: 100%;
+    width: 100vw;
     
     padding-top: 100px;
     padding-left: 200px;
+}
+@media (min-width: 500px) {
+    
 }
 
 .gamefilter-container {
@@ -14,10 +17,15 @@
     gap: 15px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 500px) {
     .gamefilter-container {
         flex-direction: column;
         align-items: start;
+        
+        width: 150px;
+    }
+    .gamefilter{
+        padding-left: 20%;
     }
 
    

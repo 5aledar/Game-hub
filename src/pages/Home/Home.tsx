@@ -15,7 +15,7 @@ const Home = () => {
     const [sortOption, setSortOption] = useState<string | undefined>(undefined)
     const [searchQuery, setSearchQuery] = useState<string |undefined>('');
     return (
-        <div>
+        <div >
             <Navbar setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
             <Sidebar categories={genres} setGenre={setGenre}  />
             <div>

@@ -1,26 +1,28 @@
-
-.sidebar{
+.sidebar {
     position: fixed;
     padding-top: 60px;
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: start;   
+    align-items: start;
     width: 200px;
     padding-left: 35px;
     height: 100vh;
     overflow-y: scroll;
-    
+
 }
-.sidebar::-webkit-scrollbar{
+
+.sidebar::-webkit-scrollbar {
     display: none;
 }
-.sidebar h1{
+
+.sidebar h1 {
     font-size: 22px;
     margin-bottom: 10px;
-    
+
 }
-.sidebar-game{
+
+.sidebar-game {
     text-decoration: none;
     width: 90%;
     display: flex;
@@ -29,7 +31,8 @@
     gap: 8px;
     margin-bottom: 7px;
 }
-.sidebar-game img{
+
+.sidebar-game img {
     width: 20px;
     height: 20px;
     object-fit: cover;
@@ -40,15 +43,55 @@
 
 
 
-
-.sidebar-game:hover p{
+.sidebar-game:hover p {
     text-decoration: underline;
     cursor: pointer;
 }
-.sidebar-game:hover img{
+
+.sidebar-game:hover img {
     transform: scale(1.1);
-    
+
 }
-.active-link{
+
+.active-link {
     font-weight: bold;
 }
+
+@media (max-width: 500px) {
+    .burger {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+        /* Hide sidebar on small screens */
+    }
+}
+
+.burger {
+    position: absolute;
+    top: 50px;
+    margin-left: 22px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.overlay {
+    position: absolute;
+    background-color: #3f4b6c;
+    top: 80px;
+    left: 30px;
+    border-radius: 10px;
+    height: 350px;
+    overflow: scroll;
+    z-index: 100;
+}
+.gerne-item{
+    cursor: pointer;
+    padding: 5px;
+}
+
+.gerne-item:hover {
+    background-color: #55607d;
+}
+

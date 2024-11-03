@@ -64,8 +64,8 @@ const Navbar = ({ setSearchQuery, searchQuery }: Props) => {
                     onChange={handleSearchChange}
                     height="30px"
                     paddingLeft="40px"
-                    borderRadius="30px"
                     border={'none'}
+                    borderRadius="30px"
                     bg={themeContext === 'dark' ? '#313845' : '#d4d9e3'}
                     color={themeContext === 'dark' ? 'white' : 'black'}
                     _focus={{ outline: '1px solid #4c5462' }}

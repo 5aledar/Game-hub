@@ -33,7 +33,7 @@ const GameFilter = ({ platforms, genre, setPlatform, setSortOption }: Props) => 
     };
 
     return (
-        <Box className="gamefilter">
+        <Box className="gamefilter" w={'fit-content'}>
             <Heading mb="20px" color={themeContext === 'dark' ? 'white' : 'black'}>
                 {platformHeader} {genre?.name} Games
             </Heading>

@@ -5,13 +5,15 @@
     align-items: center;
     justify-content: start;
     padding-right: 5px;
-    padding-left: 200px;
     padding-top: 20px;
     flex-wrap: wrap;
+    width: 98vw;
+    padding-left: 20%;
 }
 
-@media (min-width: 420px) {
+@media (min-width: 500px) {
     .gamecontainer {
+        padding-left: 200px;
         column-gap: 1.5rem;
     }
 }

@@ -4,7 +4,7 @@ import { useThemeContext } from '../../context/ThemeContext'
 const Index = () => {
   const {themeContext} = useThemeContext()
   return (
-    <div className={`${themeContext == 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'}`}>
+    <div className={`${themeContext == 'dark' ? 'dark-mode text-dark' : 'light-mode text-light'} index`}>
         <Outlet />
     </div>
   )

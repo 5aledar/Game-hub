@@ -1,0 +1,20 @@
+.color-mode {
+    background-color: #1A202C;
+  
+  }
+  .dark-mode{
+    background-color: #1A202C;
+  }
+  .light-mode{
+    background-color: white;
+  }
+  .text-dark{
+    color: white;
+  }
+  .text-light{
+    color: black;
+  }
+
+  .index{
+    overflow-x: hidden;
+  }
