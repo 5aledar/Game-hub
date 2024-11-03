@@ -16,7 +16,6 @@ const Sidebar = ({ categories, setGenre }: Props) => {
         setSelectedGenreId(item.id); 
         setVisible(false)
     };
-
     return (
         <>
             <Icon className='burger' onClick={() => setVisible(prev => !prev)}>
