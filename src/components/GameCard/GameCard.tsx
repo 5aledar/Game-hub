@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { GameCardProps } from '../../utils/interfaces';
 import { useNavigate } from 'react-router-dom';
-import { Box, Image, Spinner, Text } from "@chakra-ui/react";
-
+import { Box, Image, Spinner, Text , Flex } from "@chakra-ui/react";
+import { motion } from 'framer-motion';
 const GameCard = ({ game }: GameCardProps) => {
   const { id, name, background_image, parent_platforms, rating } = game;
   const navigate = useNavigate();
@@ -25,13 +25,15 @@ const GameCard = ({ game }: GameCardProps) => {
     ? getImgkitUrl(background_image)
     : "/images/logo.png";
 
+    const MotionImage = motion.create(Image)
+    const MotionFlex = motion.create(Flex)
   return (
-    <Box
+    <MotionFlex
       width="225px"
       height="260px"
       mb="1.5rem"
-      transition="0.3s"
-      _hover={{ transform: 'scale(1.03)', cursor: 'pointer' }}
+      whileHover={{scale: 1.03}}
+      transition={{duration: 0.3}}
       onClick={() => navigate(`/games/${id}`)}
       className={`gamecard-container`}
       bg={{ base: 'rgb(237, 245, 253)', _dark: '#2C3548' }}
@@ -48,7 +50,7 @@ const GameCard = ({ game }: GameCardProps) => {
         </Box>
       )}
 
-      <Image
+      <MotionImage
         className="poster"
         src={croppedImageUrl}
         alt={`${name} bg`}
@@ -58,8 +60,8 @@ const GameCard = ({ game }: GameCardProps) => {
         width="100%"
         height="160px"
         objectFit="cover"
-        transition="0.3s"
-        _hover={{ transform: 'scale(1.03)' }}
+        whileHover={{scale:1.03}}
+        transition={{duration: 0.3}}
       />
 
       <Box
@@ -99,11 +101,11 @@ const GameCard = ({ game }: GameCardProps) => {
             {Math.trunc((rating * 2) * 10)}
           </Text>
         </Box>
-        <Text className="gamecard-title" fontSize="md" fontWeight="medium" pl="2" color={{ base: 'black', _dark: 'white' }}>
+        <Text className="gamecard-title" fontSize="md" fontWeight="medium" pl="1" mb={6} color={{ base: 'black', _dark: 'white' }}>
           {name}
         </Text>
       </Box>
-    </Box>
+    </MotionFlex>
   );
 };
 

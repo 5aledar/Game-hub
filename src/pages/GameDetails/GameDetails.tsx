@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useRef } from "react";
-import { Box, Heading, Text, Button, Flex, Image, Spinner, HStack, VStack } from "@chakra-ui/react";
+import { Box, Heading, Text, Button, Flex, Image, Spinner, HStack, VStack, SimpleGrid } from "@chakra-ui/react";
 import Navbar from "../../components/Navbar/Navbar";
 import { useFetchGameDetails } from "../../hooks/useFetchGameDetails";
 import { useFetchTrailer } from "../../hooks/useFetchTrailer";
@@ -11,7 +11,7 @@ const GameDetails = () => {
   const contentRef = useRef<HTMLSpanElement | null>(null);
   const maxLength = 200;
   const { details, isLoading, error } = useFetchGameDetails(id!);
-  const {trailers} = useFetchTrailer(id!);
+  const { trailers } = useFetchTrailer(id!);
 
   const toggleReadMore = () => {
     setIsExpanded((prev) => !prev);
@@ -56,8 +56,8 @@ const GameDetails = () => {
                 overflowY="auto"
                 css={{
                   '&::-webkit-scrollbar': { display: 'none' },
-                  '-ms-overflow-style': 'none', 
-                  'scrollbarWidth': 'none'       
+                  '-ms-overflow-style': 'none',
+                  'scrollbarWidth': 'none'
                 }}
               >
                 <Text>
@@ -93,36 +93,86 @@ const GameDetails = () => {
                 paddingTop="40px"
                 width="70%"
               >
-                <HStack justifyContent="space-between" width="100%" alignItems="start" marginBottom={4}>
-                  <Box>
-                    <Text className="title" fontWeight="bold">Genre</Text>
-                    <VStack className="data" alignItems="flex-start" marginBottom={4}>
+                <SimpleGrid columns={2} width="100%">
+                  {/* Genre */}
+                  <Box
+                    className="grid-item"
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    padding={4}
+                  >
+                    <Text className="title" fontWeight="bold">
+                      Genre
+                    </Text>
+                    <VStack className="data" alignItems="flex-start" mt={2}>
                       {details?.genres?.map((genre, index) => (
                         <Text key={index}>{genre.name}</Text>
                       ))}
                     </VStack>
                   </Box>
-                  <Box>
-                    <Text className="title" fontWeight="bold">Platforms</Text>
-                    <VStack className="data" alignItems="flex-start">
+
+                  {/* Platforms */}
+                  <Box
+                    className="grid-item"
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    padding={4}
+                  >
+                    <Text className="title" fontWeight="bold">
+                      Platforms
+                    </Text>
+                    <VStack className="data" alignItems="flex-start" mt={2}>
                       {details?.parent_platforms?.map((parent, index) => (
                         <Text key={index}>{parent.platform.name}</Text>
                       ))}
                     </VStack>
                   </Box>
-                </HStack>
-                <HStack justifyContent="space-between" width="100%">
-                  <Box>
-                    <Text className="title" fontWeight="bold">Metascore</Text>
-                    <Text className="score good">{details?.metacritic}</Text>
+
+                  {/* Metascore */}
+                  <Box
+                    className="grid-item"
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    padding={4}
+                  >
+                    <Text className="title" fontWeight="bold">
+                      Metascore
+                    </Text>
+                    <Text
+                      className="score good"
+                      bg="green.300"
+                      w="fit-content"
+                      px={2}
+                      borderRadius={5}
+                      color="green.700"
+                      fontWeight="bold"
+                      mt={2}
+                    >
+                      {details?.metacritic}
+                    </Text>
                   </Box>
-                  <VStack alignItems="flex-start">
-                    <Text className="title" fontWeight="bold">Publisher</Text>
-                    {details?.publishers?.map((publisher, index) => (
-                      <Text key={index}>{publisher.name}</Text>
-                    ))}
-                  </VStack>
-                </HStack>
+
+                  {/* Publisher */}
+                  <Box
+                    className="grid-item"
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="flex-start"
+                    padding={4}
+                  >
+                    <Text className="title" fontWeight="bold">
+                      Publisher
+                    </Text>
+                    <VStack className="data" alignItems="flex-start" mt={2}>
+                      {details?.publishers?.map((publisher, index) => (
+                        <Text key={index}>{publisher.name}</Text>
+                      ))}
+                    </VStack>
+                  </Box>
+                </SimpleGrid>
               </Flex>
             </Box>
             <Box className="gamedetails-media" width={{ base: "100%", md: "48%" }}>

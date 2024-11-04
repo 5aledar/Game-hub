@@ -4,7 +4,7 @@ import { Game } from '../../utils/interfaces';
 import useFetchGames from '../../hooks/useFetchGames';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { useEffect, useState } from 'react';
-import { Box, HStack, Stack } from '@chakra-ui/react';
+import { Box, HStack, Stack, Flex } from '@chakra-ui/react';
 import { Skeleton, SkeletonText } from '../ui/skeleton';
 interface Prop {
     parentPlatform?: number;
@@ -17,7 +17,7 @@ const GamesContainer = ({ parentPlatform, genreId, sortOption, searchQuery }: Pr
     const [page, setPage] = useState(1);
     const [allGames, setAllGames] = useState<Game[]>([]);
     const { games, nextPage, error, isLoading } = useFetchGames(genreId, parentPlatform, sortOption, page, searchQuery);
-
+    
     const lastGameRef = useInfiniteScroll(nextPage, () => setPage((prev) => prev + 1), isLoading);
 
     useEffect(() => {
@@ -35,10 +35,11 @@ const GamesContainer = ({ parentPlatform, genreId, sortOption, searchQuery }: Pr
         <Box className='skeleton-contaier'>
             {
                 Array.from({ length: 10 }).map((_, index) => (
-                    <Stack key={index}
+                    <Flex key={index}
                         width={'225px'}
                         height={'260px'}
-                        border-radius={'8px'}
+                        border-radius={4}
+                        flexDirection={'column'}
                         marginBottom={4}
                         gap={2}
                         bg={{ base: '#25252518', _dark: '#2C3548' }}
@@ -48,10 +49,11 @@ const GamesContainer = ({ parentPlatform, genreId, sortOption, searchQuery }: Pr
                             height={'160px'}
                             loading={isLoading}
                             marginBottom={2}
+                            bg={{ base: '#25252518', _dark: '#2C3548' }}
                         />
-                        <SkeletonText noOfLines={2} gap={2}
+                        <SkeletonText noOfLines={2} gap={2} loading={isLoading}
                         />
-                    </Stack>
+                    </Flex>
                 ))}
         </Box>
     );
