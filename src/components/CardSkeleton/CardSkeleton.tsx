@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react"
 
-import { SkeletonText , Skeleton} from "../ui/skeleton"
+import { SkeletonText, Skeleton } from "../ui/skeleton"
 const CardSkeleton = ({ isLoading }: { isLoading: boolean }) => {
     return (
         <Box width={'225px'}
@@ -8,8 +8,9 @@ const CardSkeleton = ({ isLoading }: { isLoading: boolean }) => {
             display={'flex'}
             flexDirection={'column'}
             alignItems={'start'}
-            rounded={'8px'}
+            borderRadius={'8px'}
             marginBottom={6}
+            overflow={'hidden'}
             bg={{ base: '#25252518', _dark: '#2C3548' }}
         >
             <Skeleton
@@ -17,11 +18,8 @@ const CardSkeleton = ({ isLoading }: { isLoading: boolean }) => {
                 height={'160px'}
                 loading={isLoading}
                 marginBottom={2}
-                bg={{ base: 'red.100' }}
-                opacity={'40%'}
-                />
+            />
             <SkeletonText noOfLines={3} gap={2} h={2} w={'90%'} m={'auto'} loading={isLoading}
-                opacity={'40%'}
             />
         </Box>
     )

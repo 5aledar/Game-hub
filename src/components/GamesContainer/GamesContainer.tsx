@@ -24,7 +24,12 @@ const GamesContainer = () => {
         }
     }, [games, isLoading]);
     const renderSkeletons = () => (
-        <Box className='skeleton-contaier'>
+        <Box display={'flex'} columnGap={'1.5rem'}
+            flexDirection='row'
+            justifyContent='start'
+            flexWrap='wrap'
+            alignItems='center'
+        >
             {Array.from({ length: 10 }).map((_) => (
                 <CardSkeleton isLoading={isLoading} />
             ))}
