@@ -6,13 +6,11 @@ const useInfiniteScroll = (hasNextPage: boolean, loadMore: () => void, isLoading
 
     useEffect(() => {
         if (isLoading || !hasNextPage) return;
-
         const options = {
             root: null,
             rootMargin: '20px',
             threshold: 1.0,
         };
-
         const callback: IntersectionObserverCallback = (entries) => {
             if (entries[0].isIntersecting) {
                 loadMore();

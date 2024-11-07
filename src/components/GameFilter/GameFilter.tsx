@@ -14,7 +14,7 @@ interface Props {
 }
 
 const GameFilter = ({ platforms, genre, setPlatform, setSortOption }: Props) => {
-    const [platformHeader, setPlatformHeader] = useState('PC');
+    const [platformHeader, setPlatformHeader] = useState('');
     const [sort, setSort] = useState<string>('relevance');
 
     const handlePlatformOnChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -44,6 +44,7 @@ const GameFilter = ({ platforms, genre, setPlatform, setSortOption }: Props) => 
                         bg={{ base: 'rgb(237, 245, 253)', _dark: '#2E3440' }}
                         color={{ base: 'black', _dark: 'white' }}
                     >
+                        <option value=''>platform</option>
                         {platforms.map(item => (
                             <option key={item.id} value={item.name}>
                                 {item.name}

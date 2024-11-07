@@ -17,10 +17,10 @@ const Home = () => {
     return (
         <Box >
             <Navbar setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
-            <Sidebar categories={genres} setGenre={setGenre} />
+            <Sidebar categories={genres} />
             <Box>
                 <GameFilter platforms={platforms} genre={genre} setPlatform={setPlatform} setSortOption={setSortOption} />
-                <GamesContainer genreId={genre ? `${genre.id}` : undefined} parentPlatform={platform ? platform : undefined} sortOption={sortOption} searchQuery={searchQuery} />
+                <GamesContainer />
             </Box>
         </Box>
     );

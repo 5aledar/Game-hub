@@ -6,24 +6,20 @@ import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { useEffect, useState } from 'react';
 import { Box, HStack, Stack, Flex } from '@chakra-ui/react';
 import { Skeleton, SkeletonText } from '../ui/skeleton';
-interface Prop {
-    parentPlatform?: number;
-    sortOption?: string;
-    genreId: string | undefined;
-    searchQuery?: string | undefined
-}
+import useQueryStore from '@/store/useQuery';
 
-const GamesContainer = ({ parentPlatform, genreId, sortOption, searchQuery }: Prop) => {
+const GamesContainer = () => {
+    const { query } = useQueryStore()
     const [page, setPage] = useState(1);
     const [allGames, setAllGames] = useState<Game[]>([]);
-    const { games, nextPage, error, isLoading } = useFetchGames(genreId, parentPlatform, sortOption, page, searchQuery);
-    
+    const { games, nextPage, error, isLoading } = useFetchGames(page);
+
     const lastGameRef = useInfiniteScroll(nextPage, () => setPage((prev) => prev + 1), isLoading);
 
     useEffect(() => {
         setPage(1);
         setAllGames([]);
-    }, [genreId, parentPlatform, sortOption, searchQuery]);
+    }, [query]);
 
     useEffect(() => {
         if (!isLoading && games.length > 0) {

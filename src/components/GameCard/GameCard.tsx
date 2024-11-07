@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { GameCardProps } from '../../utils/interfaces';
 import { useNavigate } from 'react-router-dom';
-import { Box, Image, Spinner, Text , Flex } from "@chakra-ui/react";
+import { Box, Image, Spinner, Text, Flex } from "@chakra-ui/react";
 import { motion } from 'framer-motion';
+import Rating from '../Rating/Rating';
+import { getImgkitUrl } from '@/utils/cropImage';
 const GameCard = ({ game }: GameCardProps) => {
   const { id, name, background_image, parent_platforms, rating } = game;
   const navigate = useNavigate();
@@ -16,24 +18,19 @@ const GameCard = ({ game }: GameCardProps) => {
     setIsLoading(false);
   };
 
-  const getImgkitUrl = (url: string, width = 200, height = 200) => {
-    const path = url.replace("https://media.rawg.io", "");
-    return `https://ik.imagekit.io/angwisa${path}?tr=w-${width},h-${height}`;
-  };
-
   const croppedImageUrl = background_image
     ? getImgkitUrl(background_image)
     : "/images/logo.png";
 
-    const MotionImage = motion.create(Image)
-    const MotionFlex = motion.create(Flex)
+  const MotionImage = motion.create(Image)
+  const MotionFlex = motion.create(Flex)
   return (
     <MotionFlex
       width="225px"
       height="260px"
       mb="1.5rem"
-      whileHover={{scale: 1.03}}
-      transition={{duration: 0.3}}
+      whileHover={{ scale: 1.03 }}
+      transition={{ duration: 0.1 }}
       onClick={() => navigate(`/games/${id}`)}
       className={`gamecard-container`}
       bg={{ base: 'rgb(237, 245, 253)', _dark: '#2C3548' }}
@@ -60,8 +57,8 @@ const GameCard = ({ game }: GameCardProps) => {
         width="100%"
         height="160px"
         objectFit="cover"
-        whileHover={{scale:1.03}}
-        transition={{duration: 0.3}}
+        whileHover={{ scale: 1.03 }}
+        transition={{ duration: 0.1 }}
       />
 
       <Box
@@ -89,17 +86,7 @@ const GameCard = ({ game }: GameCardProps) => {
               </Box>
             ))}
           </Box>
-          <Text
-            fontSize="xs"
-            fontWeight="bold"
-            px="2"
-            py="-0.5"
-            borderRadius="3px"
-            bg={rating > 3 ? '#9ce77e' : '#f59a90'}
-            color={rating > 3 ? '#168c4d' : '#a91404'}
-          >
-            {Math.trunc((rating * 2) * 10)}
-          </Text>
+          <Rating rating={rating} />
         </Box>
         <Text className="gamecard-title" fontSize="md" fontWeight="medium" pl="1" mb={6} color={{ base: 'black', _dark: 'white' }}>
           {name}

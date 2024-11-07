@@ -1,26 +1,34 @@
 // src/hooks/useFetchGames.ts
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../utils/axiosInstance';
+import useQueryStore from '@/store/useQuery';
 
-const fetchGames = async (genreId?: string, platformId?: number, sortOption?: string, page: number = 1, searchQuery?: string | undefined) => {
+const fetchGames = async (page: number) => {
+    const { query } = useQueryStore.getState(); 
+
     const params: Record<string, any> = {
         page,
-        key: process.env.VITE_API_KEY
+        key: process.env.VITE_API_KEY,
     };
-    if (genreId) params.genres = genreId;
-    if (platformId) params.parent_platforms = platformId;
-    if (sortOption) params.ordering = sortOption;
-    if (searchQuery && searchQuery.trim() !== '') {
-        params.search = searchQuery;
+
+    if (query.genre) params.genres = query.genre;
+    if (query.platform) params.parent_platforms = query.platform;
+    if (query.sort) params.ordering = query.sort;
+    if (query.search && query.search.trim() !== '') {
+        params.search = query.search;
     }
+
     const response = await axiosInstance.get('/games', { params });
     return response.data;
 };
-const useFetchGames = (genreId?: string, platformId?: number, sortOption?: string, page: number = 1, searchQuery?: string) => {
+
+const useFetchGames = (page: number = 1) => {
+    const { query } = useQueryStore();  
+
     const { data, error, isLoading } = useQuery({
-        queryKey: ['games', genreId, platformId, sortOption, page, searchQuery],
-        queryFn: () => fetchGames(genreId, platformId, sortOption, page, searchQuery),
-        staleTime: 1000 * 60 * 5,
+        queryKey: ['games', query.genre, query.platform, query.sort, page, query.search],
+        queryFn: () => fetchGames(page), 
+        staleTime: 1000 * 60 * 5, 
     });
 
     return {
