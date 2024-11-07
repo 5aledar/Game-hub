@@ -10,12 +10,15 @@ const GameCard = ({ game }: { game: Game }) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
+
+  
   const handleImageLoad = () => {
     setIsLoading(false);
   };
   const handleImageError = () => {
     setIsLoading(false);
   };
+
   const croppedImageUrl = background_image
     ? getImgkitUrl(background_image)
     : "/images/logo.png";
