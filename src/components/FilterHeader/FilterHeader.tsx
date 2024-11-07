@@ -1,6 +1,6 @@
 import useQueryStore from "@/store/useQuery"
 import { useFetchPlatforms } from "@/hooks/useFetchPlatforms"
-import { Genre, Platform } from "@/utils/interfaces"
+import { Genre, Platform } from "@/types/interfaces"
 import { Heading } from "@chakra-ui/react"
 import { useFetchGenres } from "@/hooks/useFetchGenres"
 const FilterHeader = () => {

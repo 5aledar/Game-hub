@@ -1,12 +1,13 @@
 import GameCard from '../GameCard/GameCard';
 import './GamesContainer.css';
-import { Game } from '../../utils/interfaces';
+import { Game } from '../../types/interfaces';
 import useFetchGames from '../../hooks/useFetchGames';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { useEffect, useState } from 'react';
-import { Box, HStack, Stack, Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import { Skeleton, SkeletonText } from '../ui/skeleton';
 import useQueryStore from '@/store/useQuery';
+import CardSkeleton from '../CardSkeleton/CardSkeleton';
 
 const GamesContainer = () => {
     const { query } = useQueryStore()
@@ -31,25 +32,24 @@ const GamesContainer = () => {
         <Box className='skeleton-contaier'>
             {
                 Array.from({ length: 10 }).map((_, index) => (
-                    <Flex key={index}
-                        width={'225px'}
-                        height={'260px'}
-                        border-radius={4}
-                        flexDirection={'column'}
-                        marginBottom={4}
-                        gap={2}
-                        bg={{ base: '#25252518', _dark: '#2C3548' }}
-                    >
-                        <Skeleton
-                            width={'100%'}
-                            height={'160px'}
-                            loading={isLoading}
-                            marginBottom={2}
-                            bg={{ base: '#25252518', _dark: '#2C3548' }}
-                        />
-                        <SkeletonText noOfLines={2} gap={2} loading={isLoading}
-                        />
-                    </Flex>
+                    <CardSkeleton isLoading={isLoading} />
+                    // <Flex key={index}
+                        
+                       
+                    //     flexDirection={'column'}
+                    //     gap={2}
+                    //     bg={{ base: '#25252518', _dark: '#2C3548' }}
+                    // >
+                    //     <Skeleton
+                    //         width={'100%'}
+                    //         height={'160px'}
+                    //         loading={isLoading}
+                    //         marginBottom={2}
+                    //         bg={{ base: '#25252518', _dark: '#2C3548' }}
+                    //     />
+                    //     <SkeletonText noOfLines={2} gap={2} loading={isLoading}
+                    //     />
+                    // </Flex>
                 ))}
         </Box>
     );

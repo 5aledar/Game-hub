@@ -10,12 +10,7 @@ export const useFetchGenres = () => {
         genres: data?.results || [],
     }
 }
-
 const fetchGenres = async () => {
-    const { data } = await axiosInstance.get('/genres', {
-        params: {
-            key: process.env.VITE_API_KEY,
-        }
-    });
+    const { data } = await axiosInstance.get('/genres');
     return data
 }

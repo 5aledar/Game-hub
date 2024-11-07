@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Heading, Flex, Text, Image, Icon } from '@chakra-ui/react';
-import { Genre } from '../../utils/interfaces';
+import { Genre } from '../../types/interfaces';
 import { IoMdMenu } from 'react-icons/io';
 import { motion } from 'framer-motion';
 import './Sidebar.css';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GameCardProps } from '../../utils/interfaces';
+import { GameCardProps } from '../../types/interfaces';
 import { useNavigate } from 'react-router-dom';
 import { Box, Image, Spinner, Text, Flex } from "@chakra-ui/react";
 import { motion } from 'framer-motion';

@@ -8,7 +8,6 @@ const fetchGames = async (page: number) => {
 
     const params: Record<string, any> = {
         page,
-        key: process.env.VITE_API_KEY,
     };
 
     if (query.genre) params.genres = query.genre;
@@ -24,7 +23,6 @@ const fetchGames = async (page: number) => {
 
 const useFetchGames = (page: number = 1) => {
     const { query } = useQueryStore();  
-
     const { data, error, isLoading } = useQuery({
         queryKey: ['games', query.genre, query.platform, query.sort, page, query.search],
         queryFn: () => fetchGames(page), 

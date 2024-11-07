@@ -10,7 +10,6 @@ export const useFetchTrailer = (id: string) => {
     }
 }
 const fetchTrailer = async (id: string) => {
-    const { data } = await axiosInstance.get(`/games/${id}/movies?key=${process.env.VITE_API_KEY}`)
-
+    const { data } = await axiosInstance.get(`/games/${id}/movies`)
     return data;
 }

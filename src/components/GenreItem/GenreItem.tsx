@@ -1,5 +1,5 @@
 import React from 'react'
-import { Genre } from '@/utils/interfaces'
+import { Genre } from '@/types/interfaces'
 import { Flex, Image, Text } from '@chakra-ui/react'
 const GenreItem = ({ genre }: { genre?: Genre }) => {
     return (

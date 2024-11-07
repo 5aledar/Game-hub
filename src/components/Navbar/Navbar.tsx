@@ -3,11 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { ColorModeButton } from "@/components/ui/color-mode"
 import SearchBar from '../SearchBar/SearchBar';
 
-
 const Navbar = () => {
-    const navigate = useNavigate();
- 
-
+    const navigate = useNavigate(); 
     return (
         <Flex
             flexDirection="row"

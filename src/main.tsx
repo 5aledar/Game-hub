@@ -8,7 +8,7 @@ import './index.css'
 import GameDetails from './pages/GameDetails/GameDetails';
 import { Provider } from './components/ui/provider';
 import { ColorModeProvider } from "@/components/ui/color-mode"
-
+import Error from './pages/Error/Error';
 
 
 const queryClient = new QueryClient()
@@ -18,6 +18,7 @@ const router = createBrowserRouter(
     {
       path: '/',
       element: <Index />,
+      errorElement: <Error />,
       children: [
         {
           path: '',

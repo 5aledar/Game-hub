@@ -1,7 +1,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../utils/axiosInstance";
-import { GameDetails } from "../utils/interfaces";
+import { GameDetails } from "../types/interfaces";
 
 export const useFetchGameDetails = (id: string) => {
   const { data, error, isLoading } = useQuery<GameDetails, Error>({
