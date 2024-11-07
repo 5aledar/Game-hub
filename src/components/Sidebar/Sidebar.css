@@ -12,15 +12,7 @@
 
 }
 
-.sidebar::-webkit-scrollbar {
-    display: none;
-}
 
-.sidebar h1 {
-    font-size: 22px;
-    margin-bottom: 10px;
-
-}
 
 .sidebar-game {
     text-decoration: none;
@@ -53,18 +45,13 @@
 
 }
 
-.active-link {
-    font-weight: bold;
-}
 
 @media (max-width: 500px) {
     .burger {
         display: block;
     }
-
     .sidebar {
         display: none;
-        /* Hide sidebar on small screens */
     }
 }
 
@@ -84,13 +71,5 @@
     height: 350px;
     overflow: scroll;
     z-index: 100;
-}
-.gerne-item{
-    cursor: pointer;
-    padding: 5px;
-}
-
-.gerne-item:hover {
-    background-color: #55607d;
 }
 
