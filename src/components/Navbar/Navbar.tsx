@@ -1,6 +1,7 @@
 import { Box, Flex, Input, Image } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { ColorModeButton } from "@/components/ui/color-mode"
+import SearchBar from '../SearchBar/SearchBar';
 interface Props {
     setSearchQuery?: React.Dispatch<React.SetStateAction<string | undefined>>;
     searchQuery?: string | undefined;
@@ -34,7 +35,7 @@ const Navbar = ({ setSearchQuery, searchQuery }: Props) => {
                 width="30px"
                 cursor="pointer"
             />
-            <Box className="navbar-search" position="relative" width="85%">
+            {/* <Box className="navbar-search" position="relative" width="85%">
                 <Input
                     type="text"
                     placeholder="Search Games .."
@@ -57,7 +58,8 @@ const Navbar = ({ setSearchQuery, searchQuery }: Props) => {
                     left="10px"
                     width="18px"
                 />
-            </Box>
+            </Box> */}
+            <SearchBar />
             <ColorModeButton />
         </Flex>
     );
