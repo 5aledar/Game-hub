@@ -1,6 +1,6 @@
 import GameCard from '../GameCard/GameCard';
 import './GamesContainer.css';
-import { Game } from '../../types/interfaces';
+import { Game } from '../../types/game.model';
 import useFetchGames from '../../hooks/useFetchGames';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { useEffect, useState } from 'react';

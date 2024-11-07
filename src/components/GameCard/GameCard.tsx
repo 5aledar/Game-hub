@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { GameCardProps } from '../../types/interfaces';
 import { useNavigate } from 'react-router-dom';
 import { Box, Image, Spinner, Text, Flex } from "@chakra-ui/react";
 import { motion } from 'framer-motion';
 import Rating from '../Rating/Rating';
 import { getImgkitUrl } from '@/utils/cropImage';
-const GameCard = ({ game }: GameCardProps) => {
+import { Game } from '@/types/game.model';
+const GameCard = ({ game }: { game: Game }) => {
   const { id, name, background_image, parent_platforms, rating } = game;
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);

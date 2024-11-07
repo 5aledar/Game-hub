@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Stack } from '@chakra-ui/react'
 
-import { ParentPlatform } from '@/types/interfaces'
+import { ParentPlatform } from '@/types/platform.model'
 import { IconType } from 'react-icons';
 import { FaAndroid, FaApple, FaLinux, FaPlaystation, FaWindows, FaXbox } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";

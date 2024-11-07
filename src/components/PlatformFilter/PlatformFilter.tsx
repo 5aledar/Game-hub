@@ -4,7 +4,7 @@ import {
 } from '@/components/ui/native-select';
 import useQueryStore from '@/store/useQuery';
 import { useFetchPlatforms } from '@/hooks/useFetchPlatforms';
-import { Platform } from '@/types/interfaces';
+import { Platform } from '@/types/platform.model';
 const PlatformFilter = () => {
     const { platforms } = useFetchPlatforms()
     const handlePlatformOnChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

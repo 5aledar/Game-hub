@@ -39,9 +39,9 @@ const GameDescription = ({ description }: { description: string }) => {
                 height="30px"
                 borderRadius="20px"
                 mt="10px"
-                bg={isExpanded ? "gray.600" : "blue.300"}
+                bg={isExpanded ? "gray.600" : "blue.400"}
                 color="white"
-                _hover={{ bg: isExpanded ? "gray.700" : "blue.400" }}
+                _hover={{ bg: isExpanded ? "gray.700" : "blue.300" }}
                 transition="margin-top 0.3s ease"
             >
                 {isExpanded ? 'Show Less' : 'Show More'}

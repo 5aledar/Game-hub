@@ -5,6 +5,7 @@ import { useFetchGameDetails } from "../../hooks/useFetchGameDetails";
 import { useFetchTrailer } from "../../hooks/useFetchTrailer";
 import './GameDetails.css'
 import GameDescription from "@/components/GameDescription/GameDescription";
+import { Genre } from "@/types/genre.model";
 const GameDetails = () => {
   const { id } = useParams();
   const { details, isLoading, error } = useFetchGameDetails(parseInt(id!));
@@ -26,7 +27,7 @@ const GameDetails = () => {
           <Spinner color="blue.500" size="xl" margin="auto" />
         )}
 
-      
+
         {!isLoading && !error && (
           <>
             <Box
@@ -61,7 +62,7 @@ const GameDetails = () => {
                       Genre
                     </Text>
                     <VStack className="data" alignItems="flex-start" mt={2}>
-                      {details?.genres?.map((genre, index) => (
+                      {details?.genres?.map((genre: Genre, index: number) => (
                         <Text key={index}>{genre.name}</Text>
                       ))}
                     </VStack>
