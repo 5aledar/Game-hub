@@ -8,6 +8,7 @@ const fetchGames = async (page: number) => {
 
     const params: Record<string, any> = {
         page,
+        key: process.env.VITE_API_KEY
     };
 
     if (query.genre) params.genres = query.genre;
