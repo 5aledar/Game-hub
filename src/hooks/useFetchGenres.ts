@@ -1,5 +1,6 @@
 import axiosInstance from '../utils/axiosInstance';
 import { useQuery } from '@tanstack/react-query';
+import { platform } from 'os';
 export const useFetchGenres = () => {
     const { data, error, isLoading } = useQuery({
         queryKey: ['genres'],
