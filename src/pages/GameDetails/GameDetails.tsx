@@ -1,22 +1,14 @@
 import { useParams } from "react-router-dom";
-import { useState, useRef } from "react";
-import { Box, Heading, Text, Button, Flex, Image, Spinner, HStack, VStack, SimpleGrid } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Image, Spinner, VStack, SimpleGrid } from "@chakra-ui/react";
 import Navbar from "../../components/Navbar/Navbar";
 import { useFetchGameDetails } from "../../hooks/useFetchGameDetails";
 import { useFetchTrailer } from "../../hooks/useFetchTrailer";
 import './GameDetails.css'
+import GameDescription from "@/components/GameDescription/GameDescription";
 const GameDetails = () => {
-  const { id } = useParams<{ id: string }>();
-  const [isExpanded, setIsExpanded] = useState(false);
-  const contentRef = useRef<HTMLSpanElement | null>(null);
-  const maxLength = 200;
-  const { details, isLoading, error } = useFetchGameDetails(id!);
-  const { trailers } = useFetchTrailer(id!);
-
-  const toggleReadMore = () => {
-    setIsExpanded((prev) => !prev);
-  };
-
+  const { id } = useParams();
+  const { details, isLoading, error } = useFetchGameDetails(parseInt(id!));
+  const { trailers } = useFetchTrailer(parseInt(id!));
   return (
     <>
       <Navbar />
@@ -34,8 +26,7 @@ const GameDetails = () => {
           <Spinner color="blue.500" size="xl" margin="auto" />
         )}
 
-        {error && <Text color="red.500">{error.message}</Text>}
-
+      
         {!isLoading && !error && (
           <>
             <Box
@@ -50,43 +41,7 @@ const GameDetails = () => {
               >
                 {details?.name}
               </Heading>
-              <Box
-                className="gamedetails-description"
-                width="100%"
-                overflowY="auto"
-                css={{
-                  '&::-webkit-scrollbar': { display: 'none' },
-                  '-ms-overflow-style': 'none',
-                  'scrollbarWidth': 'none'
-                }}
-              >
-                <Text>
-                  {details?.description_raw.slice(0, maxLength)}
-                  <span
-                    ref={contentRef}
-                    className={`description-content ${isExpanded ? 'expanded' : ''}`}
-                    style={{
-                      display: isExpanded ? 'inline' : 'none',
-                      transition: 'opacity 0.3s ease',
-                    }}
-                  >
-                    {details?.description_raw.slice(maxLength)}
-                  </span>
-                </Text>
-                <Button
-                  onClick={toggleReadMore}
-                  width="100px"
-                  height="30px"
-                  borderRadius="20px"
-                  mt="10px"
-                  bg={isExpanded ? "gray.600" : "blue.300"}
-                  color="white"
-                  _hover={{ bg: isExpanded ? "gray.700" : "blue.400" }}
-                  transition="margin-top 0.3s ease"
-                >
-                  {isExpanded ? 'Show Less' : 'Show More'}
-                </Button>
-              </Box>
+              <GameDescription description={details.description_raw} />
               <Flex
                 className="gamedetails-details"
                 flexDirection="column"

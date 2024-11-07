@@ -4,8 +4,7 @@ import { Game } from '../../types/interfaces';
 import useFetchGames from '../../hooks/useFetchGames';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { useEffect, useState } from 'react';
-import { Box, Flex } from '@chakra-ui/react';
-import { Skeleton, SkeletonText } from '../ui/skeleton';
+import { Box } from '@chakra-ui/react';
 import useQueryStore from '@/store/useQuery';
 import CardSkeleton from '../CardSkeleton/CardSkeleton';
 
@@ -14,46 +13,23 @@ const GamesContainer = () => {
     const [page, setPage] = useState(1);
     const [allGames, setAllGames] = useState<Game[]>([]);
     const { games, nextPage, error, isLoading } = useFetchGames(page);
-
     const lastGameRef = useInfiniteScroll(nextPage, () => setPage((prev) => prev + 1), isLoading);
-
     useEffect(() => {
         setPage(1);
         setAllGames([]);
     }, [query]);
-
     useEffect(() => {
         if (!isLoading && games.length > 0) {
             setAllGames((prevGames) => [...prevGames, ...games]);
         }
     }, [games, isLoading]);
-
     const renderSkeletons = () => (
         <Box className='skeleton-contaier'>
-            {
-                Array.from({ length: 10 }).map((_, index) => (
-                    <CardSkeleton isLoading={isLoading} />
-                    // <Flex key={index}
-                        
-                       
-                    //     flexDirection={'column'}
-                    //     gap={2}
-                    //     bg={{ base: '#25252518', _dark: '#2C3548' }}
-                    // >
-                    //     <Skeleton
-                    //         width={'100%'}
-                    //         height={'160px'}
-                    //         loading={isLoading}
-                    //         marginBottom={2}
-                    //         bg={{ base: '#25252518', _dark: '#2C3548' }}
-                    //     />
-                    //     <SkeletonText noOfLines={2} gap={2} loading={isLoading}
-                    //     />
-                    // </Flex>
-                ))}
+            {Array.from({ length: 10 }).map((_) => (
+                <CardSkeleton isLoading={isLoading} />
+            ))}
         </Box>
     );
-
     return (
         <Box className={`gamecontainer `}
         >
@@ -65,11 +41,9 @@ const GamesContainer = () => {
                     </Box>
                 );
             })}
-
             {isLoading &&
                 renderSkeletons()
             }
-
             {error && <p className="error-message">Error loading games: {error.message}</p>}
         </Box>
     );
