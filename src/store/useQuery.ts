@@ -12,7 +12,7 @@ interface QueryStore {
     query: Query;
     setSearch: (search: string) => void;
     setSort: (sort: string) => void;
-    setPlatform: (platform: number) => void;
+    setPlatform: (platform: number | undefined) => void;
     setGenre: (genre: number | undefined) => void;
 }
 
