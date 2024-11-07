@@ -13,11 +13,9 @@ const GameCard = ({ game }: { game: Game }) => {
   const handleImageLoad = () => {
     setIsLoading(false);
   };
-
   const handleImageError = () => {
     setIsLoading(false);
   };
-
   const croppedImageUrl = background_image
     ? getImgkitUrl(background_image)
     : "/images/logo.png";
