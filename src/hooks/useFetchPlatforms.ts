@@ -11,10 +11,6 @@ import { useQuery } from '@tanstack/react-query';
     }
 }
 const fetchPlatforms = async () => {
-    const { data } = await axiosInstance.get('/platforms/lists/parents',{
-        params:{
-            key: process.env.VITE_API_KEY
-        }
-    });
+    const { data } = await axiosInstance.get('/platforms/lists/parents');
     return data
 }

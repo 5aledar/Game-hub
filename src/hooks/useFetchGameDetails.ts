@@ -1,3 +1,4 @@
+
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../utils/axiosInstance";
 import { GameDetails } from "@/types/game.model";
@@ -16,6 +17,6 @@ export const useFetchGameDetails = (id: number) => {
 
 
 const fetchDetails = async (id: number) => {
-  const { data } = await axiosInstance.get(`/games/${id}?key=${process.env.VITE_API_KEY}`);
+  const { data } = await axiosInstance.get(`/games/${id}`);
   return data;
 }
