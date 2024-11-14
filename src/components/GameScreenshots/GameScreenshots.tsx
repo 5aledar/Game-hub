@@ -24,7 +24,6 @@ const GameScreenshots = ({ details }: { details: GameDetails }) => {
                     return <Image src={cropped} alt="" objectFit="cover" width={{ lg: '48%', md: '48%', sm: '100%' }} />
                 })
             }
-
         </Flex>
     )
 }

@@ -18,7 +18,6 @@ const GameStats = ({ details }: { details: GameDetails }) => {
          
                 width="100%"
             >
-
                 <Box
                     className="grid-item"
                     display="flex"
@@ -35,7 +34,6 @@ const GameStats = ({ details }: { details: GameDetails }) => {
                         ))}
                     </VStack>
                 </Box>
-
                 <Box
                     className="grid-item"
                     display="flex"
@@ -52,7 +50,6 @@ const GameStats = ({ details }: { details: GameDetails }) => {
                         ))}
                     </VStack>
                 </Box>
-
                 <Box
                     className="grid-item"
                     display="flex"
@@ -77,7 +74,6 @@ const GameStats = ({ details }: { details: GameDetails }) => {
                         {details?.metacritic}
                     </Text>
                 </Box>
-
                 <Box
                     className="grid-item"
                     display="flex"
@@ -94,7 +90,6 @@ const GameStats = ({ details }: { details: GameDetails }) => {
                         ))}
                     </VStack>
                 </Box>
-
             </SimpleGrid>
         </Flex>
     )

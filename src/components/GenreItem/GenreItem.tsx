@@ -18,7 +18,6 @@ const GenreItem = ({ genre, isSelected, onClick }: { genre: Genre; isSelected: b
             >
                 <Text>{genre.name}</Text>
             </Box>
-
             <Flex
                 onClick={onClick}
                 alignItems="center"
@@ -36,9 +35,9 @@ const GenreItem = ({ genre, isSelected, onClick }: { genre: Genre; isSelected: b
                     boxSize="20px"
                     objectFit="cover"
                     borderRadius="10%"
-                    transition="transform 0.3s ease"  // Smooth transition for scaling
+                    transition="transform 0.3s ease"  
                     _hover={{
-                        transform: "scale(1.1)",  // Scale the image on hover
+                        transform: "scale(1.1)",  
                     }}
                 />
                 <Text fontWeight={isSelected ? "bold" : "normal"}>

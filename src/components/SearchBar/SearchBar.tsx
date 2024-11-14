@@ -8,16 +8,12 @@ import useQueryStore from '@/store/useQuery';
 const SearchBar = () => {
     const { query, setSearch } = useQueryStore();
     const [searchTerm, setSearchTerm] = useState(query.search || '');
-
-    // Debounce the setSearch function
     const debouncedSearch = useCallback(
         debounce((value: string) => {
             setSearch(value);
         }, 700),
         [setSearch]
     );
-
-    // Handle input change and update local state
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setSearchTerm(value);

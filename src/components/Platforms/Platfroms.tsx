@@ -20,7 +20,6 @@ const Platforms = ({ parent_platforms }: { parent_platforms: ParentPlatform[] })
         ios: MdPhoneIphone,
         web: BsGlobe,
     }
-
     return (
         <Stack direction={'row'}>
             {parent_platforms?.map((item: ParentPlatform) => (

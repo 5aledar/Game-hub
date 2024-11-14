@@ -1,7 +1,7 @@
 import axiosInstance from "../utils/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
 export const useFetchTrailer = (id: number) => {
-    const { data, error, isLoading } = useQuery({
+    const { data} = useQuery({
         queryKey: ['trailer', id],
         queryFn: () => fetchTrailer(id)
     })
