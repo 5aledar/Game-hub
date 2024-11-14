@@ -20,7 +20,7 @@ const GameCard = ({ game }: { game: Game }) => {
   };
 
   const croppedImageUrl = background_image
-    ? getImgkitUrl(background_image)
+    ? getImgkitUrl(background_image, 200, 200)
     : "/images/logo.png";
 
   const MotionImage = motion.create(Image)
@@ -89,7 +89,7 @@ const GameCard = ({ game }: { game: Game }) => {
           </Box>
           <Rating rating={rating} />
         </Box>
-        <Text fontSize="md" fontWeight="medium"  mb={6}>
+        <Text fontSize="md" fontWeight="medium" mb={6}>
           {name}
         </Text>
       </Box>
