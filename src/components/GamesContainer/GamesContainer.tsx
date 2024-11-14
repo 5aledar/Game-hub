@@ -17,7 +17,15 @@ const GamesContainer = () => {
     } = useFetchGames();
     const games = data?.pages.flatMap(page => page.results) || [];
     const renderSkeletons = () => (
-        <Box display={'flex'} columnGap={'1.5rem'} flexDirection='row' justifyContent='start' flexWrap='wrap' alignItems='center' pl={'100px'}>
+        <Box
+            display={'flex'}
+            columnGap={'1.5rem'}
+            flexDirection='row'
+            justifyContent='start'
+            flexWrap='wrap'
+            alignItems='center'
+            md={{ pl: '100px' }}
+            pl={'30px'}>
             {Array.from({ length: 10 }).map((_, index) => (
                 <CardSkeleton isLoading={isLoading} key={index} />
             ))}

@@ -8,8 +8,6 @@ import './Sidebar.css';
 
 const Sidebar = () => {
     const [visible, setVisible] = useState<boolean>(false);
-
-
     return (
         <>
             <Icon className="burger" onClick={() => setVisible((prev) => !prev)}>
@@ -17,7 +15,7 @@ const Sidebar = () => {
             </Icon>
             {visible && (
                 <Box sm={{display: 'none'}}>
-                <GenreList />
+                <GenreList setVisible={setVisible}/>
                 </Box>
             )}
             <Box
