@@ -1,36 +1,52 @@
-import React from 'react'
-import { Genre } from '@/types/genre.model'
-import { Flex, Image, Text } from '@chakra-ui/react'
-const GenreItem = ({ genre }: { genre?: Genre }) => {
-    return (
-        <Flex
-            key={genre!.id}
-            className="sidebar-game"
-            width="90%"
-            alignItems="center"
-            gap="8px"
-            mb="7px"
-            _hover={{
-                textDecoration: 'underline',
-                cursor: 'pointer',
-            }}
-        >
-            <Image
-                src={genre!.image_background}
-                alt={`${genre!.name} background`}
-                boxSize="20px"
-                objectFit="cover"
-                borderRadius="10%"
-                transition="0.5s"
-                _hover={{
-                    transform: 'scale(1.1)',
-                }}
-            />
-            <Text fontWeight={'normal'}>
-                {genre!.name}
-            </Text>
-        </Flex>
-    )
-}
+import { Genre } from "@/types/genre.model";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 
-export default GenreItem
+const GenreItem = ({ genre, isSelected, onClick }: { genre: Genre; isSelected: boolean; onClick: () => void }) => {
+    return (
+        <>
+            <Box
+                onClick={onClick}
+                display={'flex'}
+                sm={{ display: 'none' }}
+                cursor={'pointer'}
+                w='full'
+                p={'10px'}
+                bg={{
+                    base: { base: '#e0e0e0', _hover: 'white' },
+                    _dark: { base: '#3f4b6c', _hover: '#55607d' }
+                }}
+            >
+                <Text>{genre.name}</Text>
+            </Box>
+
+            <Flex
+                onClick={onClick}
+                alignItems="center"
+                gap="8px"
+                _hover={{
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                }}
+                display={'none'}
+                sm={{ display: 'flex', width: "98%" }}
+            >
+                <Image
+                    src={genre.image_background}
+                    alt={`${genre.name} background`}
+                    boxSize="20px"
+                    objectFit="cover"
+                    borderRadius="10%"
+                    transition="transform 0.3s ease"  // Smooth transition for scaling
+                    _hover={{
+                        transform: "scale(1.1)",  // Scale the image on hover
+                    }}
+                />
+                <Text fontWeight={isSelected ? "bold" : "normal"}>
+                    {genre.name}
+                </Text>
+            </Flex>
+        </>
+    );
+};
+
+export default GenreItem;

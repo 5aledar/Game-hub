@@ -46,12 +46,12 @@
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 480px) {
     .burger {
         display: block;
     }
     .sidebar {
-        display: none;
+       display: none;
     }
 }
 

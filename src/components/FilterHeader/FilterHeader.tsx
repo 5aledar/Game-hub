@@ -11,7 +11,7 @@ const FilterHeader = () => {
     const selectedPlatform = query.platform ? platforms.filter((platform: Platform) => platform.id == query.platform)[0].name : '';
     const selectedGenre = query.genre ? genres.filter((genre: Genre) => genre.id == query.genre)[0].name : '';
     return (
-        <Heading mb="20px" color={{ base: 'black', _dark: 'white' }}>
+        <Heading mb="20px" fontSize={'22px'} color={{ base: 'black', _dark: 'white' }}>
             {selectedPlatform} {selectedGenre} Games
         </Heading>
     )

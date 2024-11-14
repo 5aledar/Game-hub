@@ -29,9 +29,10 @@ const GamesContainer = () => {
             justifyContent='start'
             flexWrap='wrap'
             alignItems='center'
-        >
-            {Array.from({ length: 10 }).map((_) => (
-                <CardSkeleton isLoading={isLoading} />
+            
+        > 
+            {Array.from({ length: 10 }).map((_, index) => (
+                <CardSkeleton isLoading={isLoading} key={index} />
             ))}
         </Box>
     );

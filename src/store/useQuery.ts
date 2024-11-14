@@ -1,7 +1,6 @@
 import { create } from "zustand"
 
 interface Query {
-
     search?: string | undefined;
     sort?: string | undefined;
     platform?: number | undefined;

@@ -7,10 +7,10 @@
     padding-top: 20px;
     flex-wrap: wrap;
     width: 98vw;
-    padding-left: 20%;
+    padding-left: 28%;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 480px) {
     .gamecontainer {
         padding-left: 200px;
         column-gap: 1.5rem;
