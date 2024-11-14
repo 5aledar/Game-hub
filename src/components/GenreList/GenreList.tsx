@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useFetchGenres } from "@/hooks/useFetchGenres";
-import { VStack, Icon, Text } from "@chakra-ui/react";
+import { VStack} from "@chakra-ui/react";
 import GenreItem from "../GenreItem/GenreItem";
 import { Genre } from "@/types/genre.model";
 import useQueryStore from "@/store/useQuery";
@@ -9,7 +9,6 @@ const GenreList = () => {
     const { setGenre } = useQueryStore();
     const [selectedGenreId, setSelectedGenreId] = useState<number | null>(null);
     const { genres } = useFetchGenres();
-
     const handleGenreClick = (genreId: number) => {
         setSelectedGenreId(genreId);
         setGenre(genreId);

@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { Box, Heading, Flex, Text, Image, Icon } from '@chakra-ui/react';
+import { Box, Heading, Icon } from '@chakra-ui/react';
 import { IoMdMenu } from 'react-icons/io';
-import { motion } from 'framer-motion';
+
 import GenreList from '../GenreList/GenreList';
 import './Sidebar.css';
 
 
 const Sidebar = () => {
     const [visible, setVisible] = useState<boolean>(false);
-    const MotionFlex = motion.create(Flex);
+
 
     return (
         <>

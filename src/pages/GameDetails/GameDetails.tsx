@@ -18,7 +18,7 @@ const GameDetails = () => {
       <Flex
         className="gamedetails"
         padding="40px"
-        paddingTop="60px"
+        paddingTop="70px"
         height="100vh"
         justifyContent="space-between"
         alignItems="flex-start"

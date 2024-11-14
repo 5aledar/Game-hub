@@ -5,11 +5,11 @@ import { useFetchGenres } from '../../hooks/useFetchGenres';
 import GamesContainer from '../../components/GamesContainer/GamesContainer';
 import { Box } from '@chakra-ui/react';
 const Home = () => {
-    const { genres, } = useFetchGenres();
+
     return (
         <Box >
             <Navbar />
-            <Sidebar categories={genres} />
+            <Sidebar />
             <Box>
                 <GameFilter />
                 <GamesContainer />

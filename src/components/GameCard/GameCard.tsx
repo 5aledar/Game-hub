@@ -11,7 +11,7 @@ const GameCard = ({ game }: { game: Game }) => {
   const [isLoading, setIsLoading] = useState(true);
 
 
-  
+
   const handleImageLoad = () => {
     setIsLoading(false);
   };
@@ -44,7 +44,7 @@ const GameCard = ({ game }: { game: Game }) => {
     >
       {isLoading && (
         <Box className="image-loader" display="flex" justifyContent="center" alignItems="center" width="100%" height="160px" bg="rgba(0, 0, 0, 0.1)">
-          <Spinner size="lg" color="blue.500" />
+          <Spinner size="lg" borderWidth={'4px'} color="blue.500" />
         </Box>
       )}
 
@@ -70,8 +70,8 @@ const GameCard = ({ game }: { game: Game }) => {
         display="flex"
         flexDirection="column"
         justifyContent="space-between"
-        py="3"
-        px="2"
+        pt='2'
+        px='3'
       >
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Box display="flex" gap="3px" alignItems="center">
@@ -89,7 +89,7 @@ const GameCard = ({ game }: { game: Game }) => {
           </Box>
           <Rating rating={rating} />
         </Box>
-        <Text className="gamecard-title" fontSize="md" fontWeight="medium" pl="1" mb={6} color={{ base: 'black', _dark: 'white' }}>
+        <Text fontSize="md" fontWeight="medium"  mb={6}>
           {name}
         </Text>
       </Box>

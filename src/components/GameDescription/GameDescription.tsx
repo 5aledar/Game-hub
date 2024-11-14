@@ -13,7 +13,6 @@ const GameDescription = ({ description, title }: { description: string, title: s
         <>
             <Heading
                 as="h1"
-                fontSize={{ base: "24px", md: "36px" }}
                 marginBottom="10px"
             >
                 {title}
@@ -31,8 +30,7 @@ const GameDescription = ({ description, title }: { description: string, title: s
                 <Text>
                     {description.slice(0, maxLength)}
                     <span
-                        ref={contentRef}
-                        className={`description-content ${isExpanded ? 'expanded' : ''}`}
+                        ref={contentRef}   
                         style={{
                             display: isExpanded ? 'inline' : 'none',
                             transition: 'opacity 0.3s ease',
