@@ -1,14 +1,12 @@
-// src/hooks/useFetchGames.ts
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import axiosInstance from '../utils/axiosInstance';
 import useQueryStore from '@/store/useQuery';
 
-const fetchGames = async (page: number) => {
-    const { query } = useQueryStore.getState(); 
+const fetchGames = async ({ pageParam = 1 }: { pageParam: number }) => {
+    const { query } = useQueryStore.getState();
 
     const params: Record<string, any> = {
-        page,
-
+        page: pageParam,
     };
 
     if (query.genre) params.genres = query.genre;
@@ -22,21 +20,33 @@ const fetchGames = async (page: number) => {
     return response.data;
 };
 
-const useFetchGames = (page: number = 1) => {
-    const { query } = useQueryStore();  
+const useFetchGames = () => {
+    const { query } = useQueryStore();
 
-    const { data, error, isLoading } = useQuery({
-        queryKey: ['games', query.genre, query.platform, query.sort, page, query.search],
-        queryFn: () => fetchGames(page), 
-        staleTime: 1000 * 60 * 5, 
+    const {
+        data,
+        error,
+        isLoading,
+        isFetchingNextPage,
+        fetchNextPage,
+        hasNextPage,
+    } = useInfiniteQuery({
+        queryKey: ['games', query.genre, query.platform, query.sort, query.search],
+        queryFn: fetchGames,
+        initialPageParam: 1,
+        getNextPageParam: (lastPage, pages) => {
+            return lastPage.next ? pages.length + 1 : undefined;
+        },
+
     });
 
     return {
-        games: data?.results || [],
-        nextPage: data?.next || null,
-        prevPage: data?.previous || null,
+        data,
         error,
         isLoading,
+        isFetchingNextPage,
+        fetchNextPage,
+        hasNextPage,
     };
 };
 

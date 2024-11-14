@@ -3,16 +3,16 @@
     display: flex;
     align-items: center;
     justify-content: start;
-    padding-right: 5px;
+    padding-right: 10px;
     padding-top: 20px;
     flex-wrap: wrap;
     width: 98vw;
-    padding-left: 28%;
+    padding-left: 10%;
 }
 
 @media (min-width: 480px) {
     .gamecontainer {
-        padding-left: 200px;
+        padding-left: 100px;
         column-gap: 1.5rem;
     }
 }
