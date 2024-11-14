@@ -37,6 +37,7 @@ const useFetchGames = () => {
         getNextPageParam: (lastPage, pages) => {
             return lastPage.next ? pages.length + 1 : undefined;
         },
+        staleTime: 1
 
     });
 

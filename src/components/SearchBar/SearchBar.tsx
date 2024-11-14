@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { debounce } from 'lodash';
 import { InputGroup } from "@/components/ui/input-group";
 import { IoMdSearch } from "react-icons/io";
@@ -6,19 +6,27 @@ import { Box, Input } from '@chakra-ui/react';
 import useQueryStore from '@/store/useQuery';
 
 const SearchBar = () => {
-    const { setSearch } = useQueryStore();
+    const { query, setSearch } = useQueryStore();
+    const [searchTerm, setSearchTerm] = useState(query.search || '');
 
-    const handleSearch = useCallback(
+    // Debounce the setSearch function
+    const debouncedSearch = useCallback(
         debounce((value: string) => {
             setSearch(value);
         }, 700),
-        []
+        [setSearch]
     );
 
+    // Handle input change and update local state
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        handleSearch(value);
+        setSearchTerm(value);
+        debouncedSearch(value); 
     };
+    
+    useEffect(() => {
+        setSearchTerm(query.search || '');
+    }, [query.search]);
 
     return (
         <Box w="full" borderRadius="2xl">
@@ -37,6 +45,7 @@ const SearchBar = () => {
                     placeholder="Search Games ..."
                     border="none"
                     outline="none"
+                    value={searchTerm}  
                     onChange={handleInputChange}
                 />
             </InputGroup>

@@ -1,19 +1,22 @@
-import { useFetchGameDetails } from "@/hooks/useFetchGameDetails"
 import { Box, Text, Button, Heading } from "@chakra-ui/react";
 import { useState, useRef } from "react";
+
 const GameDescription = ({ description, title }: { description: string, title: string }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const maxLength = 200;
     const contentRef = useRef<HTMLSpanElement | null>(null);
+
     const toggleReadMore = () => {
         setIsExpanded((prev) => !prev);
     };
+
     return (
         <>
-            <Heading
-                as="h1"
-                marginBottom="10px"
+            <Heading 
+                as="h1" 
+                marginBottom="10px" 
+                fontSize={['xl', '2xl', '3xl', '4xl']} // Responsive font size for header
             >
                 {title}
             </Heading>
@@ -27,10 +30,13 @@ const GameDescription = ({ description, title }: { description: string, title: s
                     'scrollbarWidth': 'none'
                 }}
             >
-                <Text>
+                <Text
+                    fontSize={['md', 'lg', 'xl', '2xl']}  // Responsive font size for description text
+                    lineHeight="1.6"
+                >
                     {description.slice(0, maxLength)}
                     <span
-                        ref={contentRef}   
+                        ref={contentRef}
                         style={{
                             display: isExpanded ? 'inline' : 'none',
                             transition: 'opacity 0.3s ease',
@@ -54,7 +60,7 @@ const GameDescription = ({ description, title }: { description: string, title: s
                 </Button>
             </Box>
         </>
-    )
+    );
 }
 
-export default GameDescription
+export default GameDescription;
